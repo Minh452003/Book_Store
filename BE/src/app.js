@@ -4,6 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import routerProducts from "./routers/products.js";
 import routerCategory from "./routers/category.js";
+import routerAuth from "./routers/auth.js";
+import routerUser from "./routers/user.js";
+
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -16,6 +19,8 @@ app.use(cors());
 app.use(cors());
 app.use("/api", routerProducts);
 app.use("/api", routerCategory);
+app.use("/api", routerAuth);
+app.use("/api", routerUser);
 
 app.listen(8080, async () => {
     await mongoose.connect(process.env.URL_MONGO, { useNewUrlParser: true, useUnifiedTopology: true });
