@@ -2,19 +2,15 @@ import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import mongooseDelete from "mongoose-delete";
 const productsSchema = mongoose.Schema({
-    book_name: {
+    product_name: {
         type: String,
-        require: true,
+        required: true,
     },
-    book_author: {
-        type: String,
-        require: true,
-    },
-    book_price: {
+    product_price: {
         type: Number,
         required: true
     },
-    book_image: {
+    image: {
         type: Object,
         required: true
     },
@@ -22,11 +18,11 @@ const productsSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    book_quantity: {
+    stock_quantity: {
         type: Number,
         required: true
     },
-    book_description: {
+    description: {
         type: String,
         required: true
     },
