@@ -31,11 +31,11 @@ export const getOneById = async (req, res) => {
                 message: "Lấy thông tin 1 người dùng thất bại",
             })
         }
-        const { _id, first_name, last_name, password, email, address, phone, role, avatar, createdAt } = data;
+        const { _id, full_name, password, email, address, phone, role, avatar, createdAt } = data;
 
         return res.status(200).json({
             message: "Lấy thông tin 1 người dùng thành công",
-            _id, first_name, last_name, password, email, address, phone, role, avatar, createdAt
+            _id, full_name, password, email, address, phone, role, avatar, createdAt
         });
     } catch (error) {
         return res.status(400).json({
@@ -113,7 +113,7 @@ export const updateUser = async (req, res) => {
 // Đăng kí
 export const signup = async (req, res) => {
     try {
-        const { first_name, last_name, email, phone, address, avatar, password } = req.body;
+        const { full_name, email, phone, address, avatar, password } = req.body;
         const { error } = signupSchema.validate(req.body, { abortEarly: false });
         if (error) {
             const errors = error.details.map((err) => err.message);
@@ -131,8 +131,7 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = await Auth.create({
-            first_name,
-            last_name,
+            full_name,
             phone,
             address,
             avatar,

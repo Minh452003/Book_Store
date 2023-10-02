@@ -2,11 +2,7 @@ import { format } from "date-fns";
 import mongoose from "mongoose";
 
 const authSchema = new mongoose.Schema({
-    first_name: {
-        type: String,
-        required: true,
-    },
-    last_name: {
+    full_name: {
         type: String,
         required: true,
     },

@@ -15,6 +15,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { DashboardPageComponent } from './pages/admin/dashboard-page/dashboard-page.component';
 import { HomePageComponent } from './pages/view/home-page/home-page.component';
 import { PageNotFoundComponent } from './pages/view/page-not-found/page-not-found.component';
+import { AddCategoryComponent } from './pages/admin/category-page/add-category/add-category.component';
+import { UpdateCategoryComponent } from './pages/admin/category-page/update-category/update-category.component';
+import { CategoryDeleteComponent } from './pages/admin/category-page/category-delete/category-delete.component';
+import { AdminCategoryComponent } from './pages/admin/category-page/admin-category/admin-category.component';
+import { SignInComponent } from './pages/view/auth/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/view/auth/sign-up/sign-up.component';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +31,12 @@ import { PageNotFoundComponent } from './pages/view/page-not-found/page-not-foun
     AdminLayoutComponent,
     PageNotFoundComponent,
     DashboardPageComponent,
+    AdminCategoryComponent,
+    AddCategoryComponent,
+    UpdateCategoryComponent,
+    CategoryDeleteComponent,
+    SignInComponent,
+    SignUpComponent,
 
   ],
   imports: [
