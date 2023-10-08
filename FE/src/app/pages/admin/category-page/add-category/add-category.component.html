@@ -1,3 +1,5 @@
+<h2 className="fw-bold">THÊM DANH MỤC</h2>
+<br>
 <form (ngSubmit)="onHandleAdd()" [formGroup]="categoryForm">
     <!-- Name book input -->
     <div class="form-outline mb-4">
@@ -11,13 +13,10 @@
             class="text-danger">
             Tên danh mục có ít nhất 4 ký tự
         </div>
-        <div *ngIf="categoryForm.controls.category_name?.errors?.['pattern'] && categoryForm.controls.category_name?.touched"
-            class="text-danger">
-            Tên danh mục không được chứa số
-        </div>
         <div *ngIf="categoryForm.controls.category_name?.errors?.['duplicateName']" class="text-danger">
             Tên danh mục đã tồn tại
         </div>
+        <br>
         <!-- Image input -->
         <div class="form-outline mb-4">
             <label class="form-label">Ảnh</label>
@@ -30,5 +29,5 @@
         </div>
     </div>
     <!-- Submit button -->
-    <button type="submit " class="btn btn-primary btn-block mb-4">Submit</button>
+    <button type="submit " class="btn btn-primary btn-block mb-4">THÊM DANH MỤC</button>
 </form>

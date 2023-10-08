@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 export class AddCategoryComponent {
   submitted = false
   categoryForm = this.formBuilder.group({
-    category_name: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[^0-9]+$')]],
+    category_name: ['', [Validators.required, Validators.minLength(4)]],
     category_image: ['', [Validators.required]],
   })
   constructor(
@@ -46,19 +46,15 @@ export class AddCategoryComponent {
       this.uploadService.AddImage(imageFormData.get('category_image')).subscribe(
         (response) => {
           const imageUrl = response.urls[0];
-          console.log(imageUrl);
-
           category.category_image = imageUrl;
-
           // Gọi productService.addProduct() để thêm sản phẩm vào cơ sở dữ liệu
           this.CategoryService.addCategory(category).subscribe(
             (category) => {
               // Xử lý khi sản phẩm được thêm thành công
-
               Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Product has been added successfully!',
+                title: 'Thêm danh mục thành công!',
                 showConfirmButton: false,
                 timer: 1500
               });

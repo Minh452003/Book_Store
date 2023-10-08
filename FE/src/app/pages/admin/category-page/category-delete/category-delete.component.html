@@ -1,1 +1,25 @@
-<p>category-delete works!</p>
+<h2 className="fw-bold">THÙNG RÁC</h2>
+<button class="btn btn-danger"><a routerLink="/admin/categories" class="btn1"><i class='bx bx-list-ul'></i></a></button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên Danh Mục</th>
+            <th scope="col">Ảnh Danh Mục</th>
+            <th scope="col">Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categories; index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>{{category.category_name}}</td>
+            <td><img src={{category.category_image.url}} width="50"></td>
+            <td>
+                <button class="btn btn-danger " (click)="removeItem(category._id)!"><i
+                        class='bx bxs-no-entry'></i></button>
+                <button class="btn btn-primary m-2 " (click)="restoreItem(category._id)"><i
+                        class='bx bx-check'></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

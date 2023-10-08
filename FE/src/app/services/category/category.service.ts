@@ -27,8 +27,9 @@ export class CategoryService {
   updateCategory(category: ICategory): Observable<ICategory> {
     return this.http.patch<ICategory>(`http://localhost:8080/api/category/${category._id}`, category)
   }
-  restoreCategory(category: ICategory): Observable<ICategory> {
-    return this.http.patch<ICategory>(`http://localhost:8080/api/category/restore/${category._id}`, category)
+  restoreCategory(id: string | number): Observable<ICategory> {
+    const body = {};
+    return this.http.patch<ICategory>(`http://localhost:8080/api/category/restore/${id}`, body)
   }
   removeCategory(id: number): Observable<ICategory> {
     return this.http.delete<ICategory>(`http://localhost:8080/api/category/${id}`)
