@@ -9,6 +9,8 @@ import { AdminCategoryComponent } from './pages/admin/category-page/admin-catego
 import { AddCategoryComponent } from './pages/admin/category-page/add-category/add-category.component';
 import { SignInComponent } from './pages/view/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/view/auth/sign-up/sign-up.component';
+import { CategoryDeleteComponent } from './pages/admin/category-page/category-delete/category-delete.component';
+import { UpdateCategoryComponent } from './pages/admin/category-page/update-category/update-category.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
       { path: "dashboard", component: DashboardPageComponent },
       { path: "categories", component: AdminCategoryComponent },
+      { path: "categories/delete", component: CategoryDeleteComponent },
       { path: "categories/add", component: AddCategoryComponent },
+      { path: "categories/:id/update", component: UpdateCategoryComponent },
     ]
 
   },

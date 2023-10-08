@@ -1,1 +1,37 @@
-<p>update-category works!</p>
+<h2 className="fw-bold">CẬP NHẬT DANH MỤC</h2>
+<br>
+<form (ngSubmit)="onHandleUpdate()" [formGroup]="categoryForm">
+    <!-- Name book input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Tên danh mục</label>
+        <input type="text" formControlName="category_name" class="form-control" />
+        <div *ngIf="categoryForm.controls.category_name?.errors?.['required'] && categoryForm.controls.category_name?.touched  || submitted"
+            class="text-danger">
+            Tên danh mục là bắt buộc
+        </div>
+        <div *ngIf="categoryForm.controls.category_name?.errors?.['minlength'] && categoryForm.controls.category_name?.touched"
+            class="text-danger">
+            Tên danh mục có ít nhất 4 ký tự
+        </div>
+        <div *ngIf="categoryForm.controls.category_name?.errors?.['duplicateName']" class="text-danger">
+            Tên danh mục đã tồn tại
+        </div>
+        <!-- Image input -->
+        <br>
+        <div class="form-outline mb-4">
+            <label class="form-label">Ảnh</label>
+            <input type="file" class="form-control" name="images" (change)="onSelectImage($event)" />
+            <!-- Hiển thị thông báo lỗi cho trường "Ảnh" -->
+            <div *ngIf="categoryForm.get('category_image')?.errors?.['required'] && (categoryForm.get('category_image')?.touched || submitted)"
+                class="text-danger">
+                Ảnh là bắt buộc
+            </div>
+            <div class="image-preview">
+                <img *ngIf="category && category.category_image && category.category_image.url"
+                    [src]="category.category_image.url" class="mb-4" />
+            </div>
+        </div>
+    </div>
+    <!-- Submit button -->
+    <button type="submit " class="btn btn-primary btn-block mb-4">CẬP NHẬT DANH MỤC</button>
+</form>

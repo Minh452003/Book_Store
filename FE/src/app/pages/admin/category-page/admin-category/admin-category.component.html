@@ -1,11 +1,15 @@
-<button class="btn btn-danger"><a routerLink="/admin/categories/add" class="btn1">Thêm Danh Mục</a></button>
+<h2 className="fw-bold">DANH MỤC</h2>
+<button class="btn btn-danger"><a routerLink="/admin/categories/add" class="btn1"><i
+            class='bx bxs-alarm-add'></i></a></button>
+<button class="btn btn-success btn2"><a routerLink="/admin/categories/delete" class="btn2"><i
+            class='bx bxs-box'></i></a></button>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Category Name</th>
-            <th scope="col">Category Image</th>
-            <th scope="col">Action</th>
+            <th scope="col">STT</th>
+            <th scope="col">Tên Danh Mục</th>
+            <th scope="col">Ảnh Danh Mục</th>
+            <th scope="col">Hành Động</th>
         </tr>
     </thead>
     <tbody>
@@ -14,8 +18,10 @@
             <td>{{category.category_name}}</td>
             <td><img src={{category.category_image.url}} width="50"></td>
             <td>
-                <button class="btn btn-danger " (click)="removeItem(category._id)!">Xóa</button>
-                <button class="btn btn-primary m-2 " routerLink="/admin/categories/{{category._id}}/update">Sửa</button>
+                <button class="btn btn-danger " (click)="removeItem(category._id)!"><i
+                        class='bx bxs-no-entry'></i></button>
+                <button class="btn btn-primary m-2 " routerLink="/admin/categories/{{category._id}}/update"><i
+                        class='bx bxs-pencil'></i></button>
             </td>
         </tr>
     </tbody>

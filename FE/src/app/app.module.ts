@@ -21,6 +21,7 @@ import { CategoryDeleteComponent } from './pages/admin/category-page/category-de
 import { AdminCategoryComponent } from './pages/admin/category-page/admin-category/admin-category.component';
 import { SignInComponent } from './pages/view/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/view/auth/sign-up/sign-up.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 
 @NgModule({
@@ -52,7 +53,9 @@ import { SignUpComponent } from './pages/view/auth/sign-up/sign-up.component';
     BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

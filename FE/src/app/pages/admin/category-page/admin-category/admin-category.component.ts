@@ -19,20 +19,20 @@ export class AdminCategoryComponent {
   }
   removeItem(id: any) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Bạn chắc chắn?',
+      text: "Danh mục sẽ được xoá!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Tôi chắc chắn!'
     }).then((result) => {
       if (result.isConfirmed) {
         // Xóa danh mục
         this.CategoryService.removeCategory(id).subscribe(() => {
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Xoá danh mục!',
+            'Xoá danh mục thành công, danh mục chuyển vào thùng rác.',
             'success'
           )
           const newCategory = this.categories.filter((category) => category._id != id);
@@ -43,8 +43,8 @@ export class AdminCategoryComponent {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Hiển thị thông báo hủy xóa sản phẩm
         Swal.fire(
-          'Cancelled',
-          'Your product is safe :)',
+          'Thất bại',
+          'Xoá sản phẩm thất bại :)',
           'error'
         )
       }
