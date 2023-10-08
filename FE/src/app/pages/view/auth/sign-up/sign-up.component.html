@@ -14,9 +14,9 @@
                         <form class="form-horizontal" (ngSubmit)="onHandleSignup()" [formGroup]="userForm">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control" formControlName="name">
+                                <input type="text" class="form-control" formControlName="full_name">
                                 <span class="text-danger"
-                                    *ngIf="userForm.get('name')?.hasError('required') && (userForm.get('name')?.dirty || isSubmitted)">
+                                    *ngIf="userForm.get('full_name')?.hasError('required') && (userForm.get('full_name')?.dirty || isSubmitted)">
                                     Phải nhập trường tên
                                 </span>
 
@@ -47,27 +47,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input type="password" class="form-control" formControlName="confirmpassword">
+                                <input type="password" class="form-control" formControlName="confirmPassword">
                                 <span class="text-danger"
-                                    *ngIf="userForm.get('confirmpassword')?.hasError('required') && (userForm.get('confirmpassword')?.dirty || isSubmitted)">
+                                    *ngIf="userForm.get('confirmPassword')?.hasError('required') && (userForm.get('confirmPassword')?.dirty || isSubmitted)">
                                     Mật khẩu phải được xác nhận
                                 </span>
                                 <span class="text-danger"
-                                    *ngIf="userForm.get('confirmpassword')?.hasError('passwordMismatch') && (userForm.get('confirmpassword')?.dirty || isSubmitted)">
+                                    *ngIf="userForm.get('confirmPassword')?.hasError('passwordMismatch') && (userForm.get('confirmPassword')?.dirty || isSubmitted)">
                                     Mật khẩu không khớp
                                 </span>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="text" class="form-control" formControlName="address">
-                            </div>
-                            <!-- Image input -->
-                            <div class="form-outline mb-4">
-                                <label class="form-label">Ảnh</label>
-                                <input type="file" class="form-control" name="images"
-                                    (change)="onSelectImage($event)" />
-                                <!-- Hiển thị thông báo lỗi cho trường "Ảnh" -->
-
                             </div>
                             <button class="btn signin">Register</button>
                             <a href="" class="forgot">Forgot Password</a>

@@ -113,7 +113,7 @@ export const updateUser = async (req, res) => {
 // Đăng kí
 export const signup = async (req, res) => {
     try {
-        const { full_name, email, phone, address, avatar, password } = req.body;
+        const { full_name, email, password } = req.body;
         const { error } = signupSchema.validate(req.body, { abortEarly: false });
         if (error) {
             const errors = error.details.map((err) => err.message);
@@ -132,9 +132,6 @@ export const signup = async (req, res) => {
 
         const user = await Auth.create({
             full_name,
-            phone,
-            address,
-            avatar,
             email,
             password: hashedPassword,
         });
@@ -153,7 +150,7 @@ export const signup = async (req, res) => {
         const details = {
             from: process.env.MAIL_USERNAME,
             to: email,
-            subject: "Thông báo đăng ký thành công tài khoản",
+            subject: "BOOKSTORE thông báo",
             text: "Thông báo đăng ký thành công tài khoản"
         }
         mailTransporter.sendMail(details, (err) => {
