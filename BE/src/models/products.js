@@ -22,6 +22,10 @@ const productsSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     description: {
         type: String,
         required: true
@@ -30,10 +34,10 @@ const productsSchema = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Category",
     },
-    brandId: {
-        type: mongoose.Types.ObjectId,
-        ref: "Brand",
-    }
+    author: {
+        type: String,
+        require: true,
+    },
 },
     { timestamps: true, versionKey: false });
 productsSchema.plugin(mongoosePaginate);

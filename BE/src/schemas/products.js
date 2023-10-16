@@ -26,9 +26,10 @@ export const ProductSchema = Joi.object({
         "any.required": "Trường danh mục sản phẩm bắt buộc nhập",
         "string.base": "Danh mục sản phẩm phải là chuỗi"
     }),
-    brandId: Joi.string().required().messages({
-        "string.empty": "Thương hiệu bắt buộc nhập",
-        "any.required": "Trường Thương hiệu bắt buộc nhập",
-        "string.base": "Thương hiệu phải là sản phẩm"
-    })
+    author: Joi.string().required().messages({
+        "string.empty": "Tên tác giả bắt buộc nhập",
+        "any.required": "Trường tên tác giả bắt buộc nhập"
+    }),
+    views: Joi.number(),
+
 })

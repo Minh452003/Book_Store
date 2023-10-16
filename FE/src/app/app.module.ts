@@ -22,6 +22,10 @@ import { AdminCategoryComponent } from './pages/admin/category-page/admin-catego
 import { SignInComponent } from './pages/view/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/view/auth/sign-up/sign-up.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { ProductPageComponent } from './pages/admin/product-page/product-page/product-page.component';
+import { AddProductComponent } from './pages/admin/product-page/add-product/add-product.component';
+import { UpdateProductComponent } from './pages/admin/product-page/update-product/update-product.component';
+import { ProductDeleteComponent } from './pages/admin/product-page/product-delete/product-delete.component';
 
 
 @NgModule({
@@ -38,6 +42,10 @@ import { AuthInterceptor } from './auth.interceptor';
     CategoryDeleteComponent,
     SignInComponent,
     SignUpComponent,
+    ProductPageComponent,
+    AddProductComponent,
+    UpdateProductComponent,
+    ProductDeleteComponent,
 
   ],
   imports: [

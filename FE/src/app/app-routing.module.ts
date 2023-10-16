@@ -11,6 +11,10 @@ import { SignInComponent } from './pages/view/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/view/auth/sign-up/sign-up.component';
 import { CategoryDeleteComponent } from './pages/admin/category-page/category-delete/category-delete.component';
 import { UpdateCategoryComponent } from './pages/admin/category-page/update-category/update-category.component';
+import { ProductPageComponent } from './pages/admin/product-page/product-page/product-page.component';
+import { AddProductComponent } from './pages/admin/product-page/add-product/add-product.component';
+import { UpdateProductComponent } from './pages/admin/product-page/update-product/update-product.component';
+import { ProductDeleteComponent } from './pages/admin/product-page/product-delete/product-delete.component';
 
 
 const routes: Routes = [
@@ -29,6 +33,11 @@ const routes: Routes = [
       { path: "categories/delete", component: CategoryDeleteComponent },
       { path: "categories/add", component: AddCategoryComponent },
       { path: "categories/:id/update", component: UpdateCategoryComponent },
+      { path: "products", component: ProductPageComponent },
+      { path: "products/add", component: AddProductComponent },
+      { path: "products/:id/update", component: UpdateProductComponent },
+      { path: "products/delete", component: ProductDeleteComponent },
+
     ]
 
   },

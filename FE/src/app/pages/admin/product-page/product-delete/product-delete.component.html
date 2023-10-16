@@ -1,0 +1,37 @@
+<h2 className="fw-bold">THÙNG RÁC</h2>
+<button class="btn btn-danger"><a routerLink="/admin/products" class="btn1"><i class='bx bx-list-ul'></i></a></button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" [width]="200">Tên Sách</th>
+            <th scope="col" [width]="200">Tác Giả</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col" [width]="155">Số Hàng Tồn</th>
+            <th scope="col">Giá</th>
+            <th scope="col" style="text-align: center;" [width]="500">Mô Tả</th>
+            <th scope="col" [width]="100">Danh Mục</th>
+            <th scope="col" [width]="155">Chức Năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{product.product_name}}</td>
+            <td>{{product.author}}</td>
+            <td>
+                <img [src]="product?.image?.url" alt="" width="70">
+            </td>
+            <td>{{product.stock_quantity}}</td>
+            <td>{{product.product_price}}đ</td>
+            <td>{{product.description}}</td>
+            <td>{{product?.category }}</td>
+            <td>
+                <button class="btn btn-danger " (click)="onHandleRemove(product._id)!"><i
+                        class='bx bxs-no-entry'></i></button>
+                <button class="btn btn-primary m-2 " (click)="restoreItem(product._id)"><i
+                        class='bx bx-check'></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
