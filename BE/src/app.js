@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import routerProducts from "./routers/products.js";
-import routerBrands from "./routers/brands.js";
 import routerStatus from "./routers/status.js";
 import routerComment from "./routers/comments.js";
 import routerAuth from "./routers/auth.js";
@@ -38,7 +37,6 @@ app.use(passport.session());
 
 app.use("/api", routerProducts);
 app.use("/api", routerCategory);
-app.use("/api", routerBrands);
 app.use("/api", routerStatus);
 app.use("/api", routerComment);
 app.use("/api", routerAuth);
