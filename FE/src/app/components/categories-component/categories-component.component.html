@@ -1,0 +1,31 @@
+<!-- Portfolio Grid-->
+<section class="page-section" id="portfolio">
+    <div class="container">
+        <div class="section-header align-center">
+            <div class="title">
+                <span>Tất cả danh mục</span>
+            </div>
+            <h2 class="section-title">Danh mục</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-4 mb-2" *ngFor="let category of categories">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" routerLink="">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src={{category.category_image.url}} />
+                        <div class="category-name">{{category.category_name}}</div>
+                    </a>
+                </div>
+            </div>
+            <div class="paginate">
+                <mat-paginator [length]="formattedPagination.length" [pageSize]="formattedPagination.pageSize"
+                    [pageSizeOptions]="formattedPagination.pageSizeOptions" [pageIndex]=" formattedPagination.pageIndex"
+                    (page)="onPageChange($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</section>

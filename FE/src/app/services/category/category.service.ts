@@ -37,4 +37,8 @@ export class CategoryService {
   removeCategoryForce(id: number): Observable<ICategory> {
     return this.http.delete<ICategory>(`http://localhost:8080/api/category/force/${id}`)
   }
+  getAllProducts(limit: number, page: number): Observable<ICategory[]> {
+    const url = `http://localhost:8080/api/category?_limit=${limit}&_page=${page}`;
+    return this.http.get<ICategory[]>(url);
+  }
 }
