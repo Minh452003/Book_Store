@@ -26,6 +26,11 @@ import { ProductPageComponent } from './pages/admin/product-page/product-page/pr
 import { AddProductComponent } from './pages/admin/product-page/add-product/add-product.component';
 import { UpdateProductComponent } from './pages/admin/product-page/update-product/update-product.component';
 import { ProductDeleteComponent } from './pages/admin/product-page/product-delete/product-delete.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { BlogPageComponent } from './components/blog-page/blog-page.component';
+import { ContactPageComponent } from './components/contact-page/contact-page.component';
+import { CategoriesComponentComponent } from './components/categories-component/categories-component.component';
+import { ProductViewComponent } from './components/product-view/product-view.component';
 
 
 @NgModule({
@@ -46,6 +51,11 @@ import { ProductDeleteComponent } from './pages/admin/product-page/product-delet
     AddProductComponent,
     UpdateProductComponent,
     ProductDeleteComponent,
+    BannerComponent,
+    BlogPageComponent,
+    ContactPageComponent,
+    CategoriesComponentComponent,
+    ProductViewComponent,
 
   ],
   imports: [

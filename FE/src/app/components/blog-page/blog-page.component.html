@@ -1,0 +1,41 @@
+<section id="quotation" class="align-center">
+    <div class="inner-content">
+        <h2 class="section-title divider">Trích dẫn trong ngày</h2>
+        <blockquote data-aos="fade-up">
+            <q>“Càng đọc nhiều, bạn sẽ càng biết nhiều điều. Bạn càng học được nhiều, bạn sẽ càng đi được nhiều
+                nơi.”</q>
+            <div class="author-name">Dr. Seuss</div>
+        </blockquote>
+    </div>
+</section>
+<section id="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>Đọc bài viết của chúng tôi</span>
+                    </div>
+                    <h2 class="section-title">Bài viết mới nhất</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3" *ngFor="let blog of blogs">
+                        <article class="column" data-aos="fade-up">
+                            <figure>
+                                <a href="#" class="image-hvr-effect">
+                                    <img [src]="blog?.image.url" alt="post" class="post-image">
+                                </a>
+                            </figure>
+                            <div class="post-item">
+                                <div class="meta-date">{{blog.author}}</div>
+                                <h3><a href="#">{{blog.title}}</a></h3>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
