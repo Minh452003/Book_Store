@@ -31,6 +31,7 @@ import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { CategoriesComponentComponent } from './components/categories-component/categories-component.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
+import { ProductDetailComponent } from './pages/view/product-detail/product-detail.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { ProductViewComponent } from './components/product-view/product-view.com
     ContactPageComponent,
     CategoriesComponentComponent,
     ProductViewComponent,
+    ProductDetailComponent,
 
   ],
   imports: [

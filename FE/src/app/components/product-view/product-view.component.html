@@ -6,7 +6,7 @@
                     <div class="title">
                         <span>Một số mặt hàng chất lượng</span>
                     </div>
-                    <h2 class="section-title">Sách nổi bật</h2>
+                    <h2 class="section-title">SÁCH NỔI BẬT</h2>
                 </div>
                 <div class="product-list" data-aos="fade-up">
                     <div class="row">
@@ -17,7 +17,8 @@
                                 <button type="button" class="add-to-cart"
                                     routerLink="/product/{{product._id}}">Detail</button>
                                 <figcaption>
-                                    <h3><a routerLink="/product/{{product._id}}">{{product.product_name}}</a></h3>
+                                    <h4><a class="name-product"
+                                            routerLink="/product/{{product._id}}">{{product.product_name}}</a></h4>
                                     <div class="item-price">{{ formatCurrency(product.product_price) }}₫</div>
                                 </figcaption>
                             </figure>
