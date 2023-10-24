@@ -15,6 +15,7 @@ import { ProductPageComponent } from './pages/admin/product-page/product-page/pr
 import { AddProductComponent } from './pages/admin/product-page/add-product/add-product.component';
 import { UpdateProductComponent } from './pages/admin/product-page/update-product/update-product.component';
 import { ProductDeleteComponent } from './pages/admin/product-page/product-delete/product-delete.component';
+import { ProductDetailComponent } from './pages/view/product-detail/product-detail.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: "", component: HomePageComponent },
       { path: "signin", component: SignInComponent },
       { path: "signup", component: SignUpComponent },
+      { path: "product/:id", component: ProductDetailComponent },
     ]
   },
   {

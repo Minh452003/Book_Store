@@ -92,7 +92,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
     /* identical to box height */
 
@@ -286,11 +286,17 @@
     position: relative;
 }
 
+.name-product {
+    font-size: 16px;
+    text-decoration: none;
+    color: #000;
+}
+
 .section-title {
-    font-size: 3em;
+    font-size: 30px;
     font-weight: 500;
     margin-bottom: 50px;
-    margin-top: 10px;
+    margin-top: 15px;
     color: #393280;
 }
 
