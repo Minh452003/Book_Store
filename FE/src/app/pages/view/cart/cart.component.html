@@ -1,0 +1,54 @@
+<div id="site-header">
+    <div class="container">
+        <h1>Giỏ hàng</h1>
+    </div>
+</div>
+
+<div class="container" *ngIf="userCart">
+    <section id="cart">
+        <article class="product" *ngFor="let product of cart?.data?.products">
+            <header>
+                <a class="remove">
+                    <img src="{{product.image}}" alt="">
+                    <h3 *ngIf="product.productId" (click)="handleRemoveProductInCart(product.productId)">Xoá
+                    </h3>
+                </a>
+            </header>
+            <div class="content">
+                <h1>{{product.product_name}}</h1>
+                <div title="You have selected this product to be shipped in the color yellow." style="top: 0" class="">
+                </div>
+                <footer class="content">
+                    <div class="d-flex w-50 justify-content-around quantity">
+                        <button class="qt-minus" (click)="decreaseQuantity()"> - </button>
+                        <input type="text" value="1" class="qt" min="1" max="100" value={{product?.stock_quantity}}>
+                        <button class="qt-plus" (click)="increaseQuantity()"> +</button>
+                    </div>
+                    <h2 class="full-price">
+                        {{ formatCurrency(product.product_price! * product.stock_quantity!)}}₫
+                    </h2>
+                    <h2 class="price">
+                        {{ formatCurrency(product.product_price)}}₫
+                    </h2>
+                </footer>
+            </div>
+
+        </article>
+    </section>
+    <section id="site-footer">
+        <div class="container clearfix">
+            <div class="left">
+                <h1 class="shipping">Phí vận chuyển: <span>5.00</span>Đ</h1>
+                <a class="btn btn1" routerLink="/">Tiếp Tục Mua Hàng</a>
+            </div>
+            <div class="right">
+                <h1 class="total">Tổng tiền: <span>{{formatCurrency(cart && cart.data && cart.data.total)}}</span>₫
+                </h1>
+                <a class="btn" routerLink="/pay">THANH TOÁN</a>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="bg-light p-2" *ngIf="!userCart">
+    <p class="tb">Bạn chưa đăng nhập.</p>
+</div>

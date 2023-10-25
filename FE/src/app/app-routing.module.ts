@@ -16,6 +16,9 @@ import { AddProductComponent } from './pages/admin/product-page/add-product/add-
 import { UpdateProductComponent } from './pages/admin/product-page/update-product/update-product.component';
 import { ProductDeleteComponent } from './pages/admin/product-page/product-delete/product-delete.component';
 import { ProductDetailComponent } from './pages/view/product-detail/product-detail.component';
+import { CartComponent } from './pages/view/cart/cart.component';
+import { PayComponent } from './pages/view/pay/pay.component';
+import { ContactuspageComponent } from './pages/view/contactuspage/contactuspage.component';
 
 
 const routes: Routes = [
@@ -25,6 +28,9 @@ const routes: Routes = [
       { path: "signin", component: SignInComponent },
       { path: "signup", component: SignUpComponent },
       { path: "product/:id", component: ProductDetailComponent },
+      { path: "carts", component: CartComponent },
+      { path: "pay", component: PayComponent },
+      { path: "contact", component: ContactuspageComponent },
     ]
   },
   {
