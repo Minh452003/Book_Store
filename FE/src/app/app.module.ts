@@ -32,6 +32,9 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
 import { CategoriesComponentComponent } from './components/categories-component/categories-component.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
 import { ProductDetailComponent } from './pages/view/product-detail/product-detail.component';
+import { CartComponent } from './pages/view/cart/cart.component';
+import { PayComponent } from './pages/view/pay/pay.component';
+import { ContactuspageComponent } from './pages/view/contactuspage/contactuspage.component';
 
 
 @NgModule({
@@ -58,6 +61,9 @@ import { ProductDetailComponent } from './pages/view/product-detail/product-deta
     CategoriesComponentComponent,
     ProductViewComponent,
     ProductDetailComponent,
+    CartComponent,
+    PayComponent,
+    ContactuspageComponent,
 
   ],
   imports: [

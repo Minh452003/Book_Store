@@ -20,7 +20,11 @@ export class ProductViewComponent {
     this.paginator = {} as MatPaginator
   }
   formatCurrency(number: any): string {
-    return this.currencyService.formatCurrency(number);
+    if (number !== undefined && number !== null) {
+      return this.currencyService.formatCurrency(number);
+    } else {
+      return ''; // Hoặc giá trị mặc định khác
+    }
   }
   pagination = {
     hasNextPage: true,

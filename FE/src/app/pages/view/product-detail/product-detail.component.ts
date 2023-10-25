@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICategory } from 'src/app/interfaces/category';
 import { IProduct } from 'src/app/interfaces/product';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { CurrencyService } from 'src/currency.service';
 import { getDecodedAccessToken } from 'src/app/decoder';
@@ -46,7 +46,7 @@ export class ProductDetailComponent {
     });
     // ----------------------------------
     this.productService.getProducts().subscribe((products: any) => {
-      this.products = products?.product?.docs.filter((product: IProduct) => product.categoryId === this.product.categoryId);
+      this.products = products?.product?.docs.filter((product: IProduct) => product?.categoryId === this.product?.categoryId);
     })
   }
   // ----------------------------
@@ -64,7 +64,11 @@ export class ProductDetailComponent {
   }
   //--------------------------------
   formatCurrency(number: any): string {
-    return this.currencyService.formatCurrency(number);
+    if (number !== undefined && number !== null) {
+      return this.currencyService.formatCurrency(number);
+    } else {
+      return ''; // Hoặc giá trị mặc định khác
+    }
   }
   handleAddToCart() {
     const { id }: any = getDecodedAccessToken()

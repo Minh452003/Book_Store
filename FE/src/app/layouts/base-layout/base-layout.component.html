@@ -19,10 +19,9 @@
                 </div>
                 <div style="color: red; font-weight: bold;" class="font" mat-raised-button matBadgePosition="after"
                     matBadgeColor="warn">
-                    <a routerLink="/cart" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <a routerLink="/carts" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                         <i class='bx bx-cart cart'></i>
                     </a>
-
                 </div>
                 <div class="p-1 dropdown font">
                     <a id="dropdownUserButton" data-mdb-toggle="dropdown" aria-expanded="false"
@@ -31,12 +30,11 @@
                     </a>
                     <ul class="dropdown-menu drop-user p-2" aria-labelledby="dropdownUserButton">
                         <div class="d-flex flex-column align-items-center">
-                            <p (click)="openDialog('signin')" class="open-modal">Sign in</p>
-                            <p (click)="openDialog('signup')" class="open-modal">Sign up</p>
+                            <p (click)="openDialog('signin')" class="open-modal">Đăng nhập</p>
+                            <p (click)="openDialog('signup')" class="open-modal">Đăng ký</p>
                         </div>
                     </ul>
                 </div>
-
                 <!-- <div class="p-1 dropdown w-10 font">
                     <a routerLink="/profile" id="dropdownUserButton" data-mdb-toggle="dropdown" aria-expanded="false">
                         <img src="" alt="avatar" class="w-75 avatar" />
@@ -50,8 +48,6 @@
                         </div>
                     </ul>
                 </div> -->
-
-
             </div>
             <hr class="hr-full">
         </div>
@@ -93,115 +89,104 @@
     <footer id="footer">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-4">
-
                     <div class="footer-item">
                         <div class="company-brand">
                             <img src="https://i.pinimg.com/170x/6b/62/20/6b6220e809e48ee2226f725edfcbc957.jpg"
                                 alt="logo" class="footer-logo">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis sed ptibus liberolectus
-                                nonet psryroin. Amet sed lorem posuere sit iaculis amet, ac urna. Adipiscing fames
-                                semper erat ac in suspendisse iaculis.</p>
+                            <p>Khách hàng rất quan trọng, khách hàng sẽ được khách hàng theo đuổi. Anh ta sinh ra với
+                                những mũi tên nhưng có đôi chân
+                                không phải psryroin Nhưng tốt nhất là đặt mục tiêu vào mục tiêu và chiếc bình. Bạn sẽ
+                                thấy đói
+                                anh ấy luôn ở trong mục tiêu bị đình chỉ.</p>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="col-md-2">
-
                     <div class="footer-menu">
-                        <h5>About Us</h5>
+                        <h5>Về chúng tôi</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">vision</a>
+                                <a href="#">Tầm nhìn</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">articles </a>
+                                <a href="#">Bài viết</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">careers</a>
+                                <a href="#">Nghề nghiệp</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">service terms</a>
+                                <a href="#">Điều khoản dịch vụ</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">donate</a>
+                                <a href="#">Quyên tặng</a>
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="col-md-2">
-
                     <div class="footer-menu">
-                        <h5>Discover</h5>
+                        <h5>Phát hiện</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">Home</a>
+                                <a href="#">Trang chủ</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Books</a>
+                                <a href="#">Tủ sách</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Authors</a>
+                                <a href="#">Tác giả</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Subjects</a>
+                                <a href="#">Đối tượng</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Advanced Search</a>
+                                <a href="#">Tìm kiếm nâng cao</a>
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="col-md-2">
-
                     <div class="footer-menu">
-                        <h5>My account</h5>
+                        <h5>Tài khoản</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">Sign In</a>
+                                <a href="#">Đăng nhập</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">View Cart</a>
+                                <a href="#">Xem giỏ hàng</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">My Wishtlist</a>
+                                <a href="#">Sản phẩm yêu thích</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Track My Order</a>
+                                <a href="#">Theo dõi đơn hàng của tôi</a>
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="col-md-2">
 
                     <div class="footer-menu">
-                        <h5>Help</h5>
+                        <h5>Giúp đỡ</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">Help center</a>
+                                <a href="#">Trung tâm trợ giúp</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Report a problem</a>
+                                <a href="#">Báo cáo sự cố</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Suggesting edits</a>
+                                <a href="#">Đề xuất chỉnh sửa</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Contact us</a>
+                                <a href="#">Liên hệ chúng tôi</a>
                             </li>
                         </ul>
                     </div>
-
                 </div>
-
             </div>
             <!-- / row -->
-
         </div>
     </footer>
 </div>
