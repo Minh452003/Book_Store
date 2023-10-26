@@ -2,15 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="section-header align-center">
-                    <div class="title">
-                        <span>Một số mặt hàng chất lượng</span>
-                    </div>
-                    <h2 class="section-title">SÁCH NỔI BẬT</h2>
-                </div>
                 <div class="product-list" data-aos="fade-up">
                     <div class="row">
-
                         <div class="col-md-3" *ngFor="let product of products">
                             <figure class="product-style">
                                 <img [src]="product.image?.url" alt="Books" class="product-item">
@@ -19,6 +12,8 @@
                                 <figcaption>
                                     <h4><a class="name-product"
                                             routerLink="/product/{{product._id}}">{{product.product_name}}</a></h4>
+                                    <p class="name">{{product.author}}</p>
+
                                     <div class="item-price">{{ formatCurrency(product.product_price) }}₫</div>
                                 </figcaption>
                             </figure>
