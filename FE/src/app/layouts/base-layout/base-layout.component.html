@@ -6,12 +6,22 @@
                     class="d-inline-block align-text-top logo">
             </div>
             <div class="col-lg-6">
-                <form>
+                <form (ngSubmit)="onSearch()">
                     <div class="form-input">
-                        <input type="search" placeholder="Search..." name="searchValue">
+                        <input type="search" placeholder="Tìm kiếm..." [(ngModel)]="searchValue" name="searchValue"
+                            (focusout)="onSearchBlur()">
                         <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                     </div>
                 </form>
+                <div *ngIf="searchResults.length " class="search-results">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor=" let product of searchResults">
+                            <img src="{{product.image.url}}" class="image">
+                            <a routerLink="/product/{{product._id}}">{{product.product_name}}</a>
+                            <p class="price">{{ formatCurrency(product.product_price) }}₫</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="font">

@@ -38,7 +38,7 @@ export class ProductViewComponent {
     totalPages: 1
   }
 
-  limit = 4
+  limit = 8
 
   formattedPagination: any = {}
 
@@ -61,8 +61,6 @@ export class ProductViewComponent {
       this.formattedPagination.pageSizeOptions = [3, 6]
       this.formattedPagination.totalPages = res.product.totalPages
       this.formattedPagination.page = res.product.page
-      console.log(this.products); // Log products data here
-      console.log(this.formattedPagination.pageSizeOptions);
     })
   }
   currentProduct() {

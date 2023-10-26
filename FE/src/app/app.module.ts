@@ -35,6 +35,9 @@ import { ProductDetailComponent } from './pages/view/product-detail/product-deta
 import { CartComponent } from './pages/view/cart/cart.component';
 import { PayComponent } from './pages/view/pay/pay.component';
 import { ContactuspageComponent } from './pages/view/contactuspage/contactuspage.component';
+import { CategoryDetailComponent } from './pages/view/category-detail/category-detail.component';
+import { OrderPageComponent } from './pages/view/order-page/order-page.component';
+import { OrderDetailComponent } from './pages/view/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -64,6 +67,9 @@ import { ContactuspageComponent } from './pages/view/contactuspage/contactuspage
     CartComponent,
     PayComponent,
     ContactuspageComponent,
+    CategoryDetailComponent,
+    OrderPageComponent,
+    OrderDetailComponent,
 
   ],
   imports: [
