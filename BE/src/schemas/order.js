@@ -21,7 +21,7 @@ export const orderSchema = Joi.object({
         "string.empty": "Thêm địa chỉ ",
         "any.required": 'Trường "Địa chỉ" là bắt buộc',
     }),
-    notes: Joi.string(),
+    notes: Joi.string().allow(''),
     paymentId: Joi.string(),
     paymentCode: Joi.string(),
     payerId: Joi.string()

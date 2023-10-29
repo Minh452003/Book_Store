@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 import { CurrencyService } from 'src/currency.service';
 import { getDecodedAccessToken } from 'src/app/decoder';
 import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-detail',
@@ -72,14 +73,12 @@ export class ProductDetailComponent {
   }
   handleAddToCart() {
     const { id }: any = getDecodedAccessToken()
-
     if (!id) {
       // Hiển thị thông báo hoặc chuyển hướng đến trang đăng nhập
       console.log("Bạn chưa đăng nhập. Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
       this.router.navigate(['/signin']);
       return;
     }
-
     const data: any = {
       productId: this.product._id,
       product_name: this.product.product_name,
@@ -87,17 +86,25 @@ export class ProductDetailComponent {
       image: this.product.image?.url,
       stock_quantity: this.quantity,
     }
-    console.log(data);
-
     this.CartService.addToCart(data, id).subscribe(cart => {
       Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Đã thêm sản phẩm vào giỏ hàng!',
-        showConfirmButton: false,
+        showConfirmButton: true,
         timer: 1500
       })
+    }, (errorResponse) => {
+      if (errorResponse instanceof HttpErrorResponse) {
+        const errorMessage = errorResponse.error.message;
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: errorMessage,
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
     })
-
   }
 }
