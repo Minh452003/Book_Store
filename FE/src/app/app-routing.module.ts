@@ -22,6 +22,8 @@ import { ContactuspageComponent } from './pages/view/contactuspage/contactuspage
 import { CategoryDetailComponent } from './pages/view/category-detail/category-detail.component';
 import { OrderPageComponent } from './pages/view/order-page/order-page.component';
 import { OrderDetailComponent } from './pages/view/order-detail/order-detail.component';
+import { ListOrderPageComponent } from './pages/admin/order-page/list-order-page/list-order-page.component';
+import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-order-detai-page/admin-order-detai-page.component';
 
 
 const routes: Routes = [
@@ -51,7 +53,8 @@ const routes: Routes = [
       { path: "products/add", component: AddProductComponent },
       { path: "products/:id/update", component: UpdateProductComponent },
       { path: "products/delete", component: ProductDeleteComponent },
-
+      { path: "orders", component: ListOrderPageComponent },
+      { path: "orders/:id", component: AdminOrderDetaiPageComponent }
     ]
 
   },

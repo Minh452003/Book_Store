@@ -27,7 +27,7 @@ const orderSchema = mongoose.Schema({
   status: {
     type: mongoose.Types.ObjectId,
     ref: "Status",
-    default: '64e8a93da63d2db5e8d8562a'
+    default: '64e5f7a730eb46277529186f'
   },
   phone: {
     type: String,

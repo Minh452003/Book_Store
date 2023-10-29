@@ -38,6 +38,8 @@ import { ContactuspageComponent } from './pages/view/contactuspage/contactuspage
 import { CategoryDetailComponent } from './pages/view/category-detail/category-detail.component';
 import { OrderPageComponent } from './pages/view/order-page/order-page.component';
 import { OrderDetailComponent } from './pages/view/order-detail/order-detail.component';
+import { ListOrderPageComponent } from './pages/admin/order-page/list-order-page/list-order-page.component';
+import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-order-detai-page/admin-order-detai-page.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { OrderDetailComponent } from './pages/view/order-detail/order-detail.com
     CategoryDetailComponent,
     OrderPageComponent,
     OrderDetailComponent,
+    ListOrderPageComponent,
+    AdminOrderDetaiPageComponent,
 
   ],
   imports: [

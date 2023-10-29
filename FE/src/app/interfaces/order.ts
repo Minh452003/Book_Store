@@ -6,7 +6,7 @@ export interface Product {
     stock_quantity?: number;
 }
 
-export interface Order {
+export interface IOrder {
     _id?: string;
     userId?: string;
     products?: Product[];

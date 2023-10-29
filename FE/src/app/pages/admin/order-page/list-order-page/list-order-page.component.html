@@ -1,0 +1,35 @@
+<h3 className="fw-bold">ĐƠN HÀNG</h3>
+<ul class="tabs">
+    <li *ngFor="let sta of status; index as i" class="tab" (click)="getUnconfirmedOrders(sta._id)">
+        {{sta.status_name}}</li>
+</ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Số ĐT</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Ngày đặt hàng</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of filteredOrders; index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>{{order.userId}}</td>
+            <td>{{order.address}}</td>
+            <td>{{order.phone}}</td>
+            <td class="text-danger">{{ formatCurrency(order.total) }}₫</td>
+            <td class="text-primary">{{order.status.status_name}}</td>
+            <td>{{ formatCreatedAt(order.createdAt) }}</td>
+            <td>
+                <button class="btn btn-danger" routerLink="/admin/orders/{{order._id}}"><i
+                        class='bx bx-detail'></i></button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

@@ -17,3 +17,19 @@
     border-bottom-right-radius: 10px;
 
 }
+
+.status {
+    padding: 7px 7px 7px 7px;
+    margin-right: 10px;
+    background-color: cadetblue;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
+
+.active {
+    background-color: #007bff;
+    /* Màu nền nút khi được chọn */
+    color: #fff;
+    /* Màu chữ khi được chọn */
+}
