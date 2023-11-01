@@ -1,0 +1,65 @@
+<div>
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="profile-nav col-md-3">
+                <div class="panel">
+                    <div class="user-heading round">
+                        <a href="#" *ngIf="user">
+                            <img *ngIf="user.avatar" src='{{user?.avatar?.url}}' />
+                            <img *ngIf="!user.avatar" src='https://cdn-icons-png.flaticon.com/512/6596/6596121.png' />
+                        </a>
+                        <h1>{{user?.full_name}}</h1>
+                        <p>{{user?.email}}</p>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a routerLink="/profile" class="a">
+                                <i class='bx bx-user float-left mt-2'>
+                                    <span class="text1">Hồ sơ</span>
+                                </i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a routerLink="/profile/orders" class="a ">
+                                <i class='bx bx-cart float-left mt-2'>
+                                    <span class="text1">Đơn hàng</span>
+                                </i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a routerLink="/profile/signin" class="a ">
+                                <i class='bx bx-log-in-circle float-left mt-2'>
+                                    <span class="text1">Đăng nhập</span>
+                                </i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a routerLink="/profile/signup" class="a ">
+                                <i class='bx bxs-log-in float-left mt-2'>
+                                    <span class="text1">Đăng ký</span>
+                                </i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a routerLink="" class="a ">
+                                <i class='bx bx-log-out-circle float-left mt-2 text-danger'>
+                                    <span class="text1 text-danger">Đăng xuất</span>
+                                </i>
+                            </a>
+                        </li>
+                        <li class="list-group-item" *ngIf="user">
+                            <a routerLink="/admin" class="a" *ngIf="user.role=='admin'">
+                                <i class='bx bxs-user-detail float-left mt-2'>
+                                    <span class="text1">Đăng nhập admin</span>
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile-info col-md-9">
+                <router-outlet />
+            </div>
+        </div>
+    </div>
+</div>

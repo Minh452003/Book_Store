@@ -35,7 +35,6 @@ const addProduct = async (cartExist, productAdd, res) => {
         }
         for (const item of cartExist.products) {
             const product = await Product.findById(item.productId);
-
             if (!product || product.stock_quantity < item.stock_quantity) {
                 return res.status(400).json({ message: `Đã quá số hàng tồn` });
             }

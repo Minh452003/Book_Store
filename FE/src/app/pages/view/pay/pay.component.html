@@ -62,14 +62,27 @@
                     </div>
                     <br>
                     <h4 class="mb-3">Hình thức thanh toán</h4>
-
-                    <div class="d-flex flex-column"> <label class="radio"> <input type="radio" name="gender"
-                                value="MALE" checked>
-                            <div class="d-flex justify-content-between"> <span>THANH TOÁN TẠI NHÀ</span></div>
-                        </label> <label class="radio"> <input type="radio" name="gender" value="FEMALE">
-                            <div class="d-flex justify-content-between"> <span>THANH TOÁN ONLINE</span>
+                    <div class="d-flex flex-column">
+                        <label class="radio">
+                            <input type="radio" name="paymentMethod" value="cod" checked
+                                formControlName="paymentMethod">
+                            <div class="d-flex justify-content-between">
+                                <span>THANH TOÁN TẠI NHÀ</span>
                             </div>
-                        </label> </div>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="paymentMethod" value="momo" formControlName="paymentMethod">
+                            <div class="d-flex justify-content-between">
+                                <span>THANH TOÁN MOMO</span>
+                            </div>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="paymentMethod" value="paypal" formControlName="paymentMethod">
+                            <div class="d-flex justify-content-between">
+                                <span>THANH TOÁN PAYPAL</span>
+                            </div>
+                        </label>
+                    </div>
                     <br>
                     <hr class="mb-4">
                     <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt hàng</button>

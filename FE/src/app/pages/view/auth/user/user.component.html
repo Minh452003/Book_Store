@@ -1,0 +1,23 @@
+<div class="panel">
+</div>
+<div class="panel">
+    <div class="bio-graph-heading">
+        Hồ sơ của tôi
+    </div>
+    <div class="panel-body bio-graph-info">
+        <div class="row" *ngIf="user">
+            <div class="bio-row" *ngIf="user.full_name">
+                <p><span> Họ và tên </span>: {{user?.full_name}}</p>
+            </div>
+            <div class="bio-row" *ngIf="user.email">
+                <p><span>Email </span>: {{user?.email}}</p>
+            </div>
+            <div class="bio-row" *ngIf="user.adress">
+                <p><span>Địa chỉ</span>: {{user?.adress}}</p>
+            </div>
+            <div class="bio-row" *ngIf="user.phone">
+                <p><span>Điện thoại</span>: {{user?.phone}}</p>
+            </div>
+        </div>
+    </div>
+</div>

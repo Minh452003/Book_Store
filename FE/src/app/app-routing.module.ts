@@ -24,6 +24,8 @@ import { OrderPageComponent } from './pages/view/order-page/order-page.component
 import { OrderDetailComponent } from './pages/view/order-detail/order-detail.component';
 import { ListOrderPageComponent } from './pages/admin/order-page/list-order-page/list-order-page.component';
 import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-order-detai-page/admin-order-detai-page.component';
+import { ProfileComponent } from './pages/view/auth/profile/profile.component';
+import { UserComponent } from './pages/view/auth/user/user.component';
 
 
 const routes: Routes = [
@@ -32,12 +34,19 @@ const routes: Routes = [
       { path: "", component: HomePageComponent },
       { path: "signin", component: SignInComponent },
       { path: "signup", component: SignUpComponent },
+      {
+        path: "profile", component: ProfileComponent, children: [
+          { path: "", component: UserComponent },
+          { path: "orders", component: OrderPageComponent },
+          { path: "signin", component: SignInComponent },
+          { path: "signup", component: SignUpComponent },
+        ]
+      },
       { path: "product/:id", component: ProductDetailComponent },
       { path: "carts", component: CartComponent },
       { path: "pay", component: PayComponent },
       { path: "contact", component: ContactuspageComponent },
       { path: "category/:id", component: CategoryDetailComponent },
-      { path: "orders", component: OrderPageComponent },
       { path: "orders/:id", component: OrderDetailComponent },
     ]
   },

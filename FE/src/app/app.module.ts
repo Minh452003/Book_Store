@@ -40,6 +40,8 @@ import { OrderPageComponent } from './pages/view/order-page/order-page.component
 import { OrderDetailComponent } from './pages/view/order-detail/order-detail.component';
 import { ListOrderPageComponent } from './pages/admin/order-page/list-order-page/list-order-page.component';
 import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-order-detai-page/admin-order-detai-page.component';
+import { ProfileComponent } from './pages/view/auth/profile/profile.component';
+import { UserComponent } from './pages/view/auth/user/user.component';
 
 
 @NgModule({
@@ -74,6 +76,8 @@ import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-ord
     OrderDetailComponent,
     ListOrderPageComponent,
     AdminOrderDetaiPageComponent,
+    ProfileComponent,
+    UserComponent,
 
   ],
   imports: [
