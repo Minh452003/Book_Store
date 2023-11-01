@@ -40,3 +40,16 @@
     color: #111;
     border-bottom: 2px solid #9A884C;
 }
+
+.bio-graph-heading {
+    background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+    background: linear-gradient(to right, #eecda3, #c6b670);
+    color: #fff;
+    text-align: center;
+    font-style: italic;
+    padding: 40px 110px;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    font-size: 32px;
+    font-weight: 300;
+}

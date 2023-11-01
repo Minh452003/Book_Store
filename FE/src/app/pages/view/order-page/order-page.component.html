@@ -1,8 +1,8 @@
 <div *ngIf="detailOrder.length">
     <div class="page-header text-center">
-        <div class="container">
-            <h1 class="page-title">Đơn hàng</h1>
-        </div><!-- End .container -->
+        <div class="bio-graph-heading">
+            Đơn hàng
+        </div>
     </div><!-- End .page-header -->
     <br>
     <ul class="tabs">
@@ -21,23 +21,23 @@
                                     <th scope="col">#</th>
                                     <th scope="col" [width]="200">Ảnh sản phẩm</th>
                                     <th scope="col" [width]="200">Người mua</th>
-                                    <th scope="col">Số điện thoại</th>
+                                    <th scope="col" [width]="150">Điện thoại</th>
                                     <th scope="col" [width]="155">Địa chỉ</th>
-                                    <th scope="col">Tổng tiền</th>
-                                    <th scope="col" [width]="120">Trạng thái</th>
-                                    <th scope="col" [width]="100">Ngày mua</th>
+                                    <th scope="col" [width]="150">Tổng tiền</th>
+                                    <th scope="col" [width]="150">Trạng thái</th>
+                                    <th scope="col" [width]="150">Ngày mua</th>
                                     <th scope="col" [width]="155">Chi tiết</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let order of filteredOrders ; index as i">
                                     <th scope="row">{{i+1}}</th>
-                                    <td><img [src]="order.products[0].image" alt="" width="70"></td>
+                                    <td><img [src]="order.products[0].image" width="70" height="70"></td>
                                     <td>{{user.full_name}}</td>
                                     <td>{{order.phone}}</td>
                                     <td>{{order.address}}</td>
                                     <td>{{ formatCurrency(order.total) }}₫</td>
-                                    <td>{{order.status.status_name}}</td>
+                                    <td [width]="200">{{order.status.status_name}}</td>
                                     <td>{{ formatCreatedAt(order.createdAt) }}</td>
                                     <td>
                                         <button class="btn btn-primary m-2 " routerLink="/orders/{{order._id}}"><i

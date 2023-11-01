@@ -5,6 +5,7 @@ import { getDecodedAccessToken } from 'src/app/decoder';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { OrderService } from 'src/app/services/orders/order.service';
+import { PaymentService } from 'src/app/services/payments/payment.service';
 import { CurrencyService } from 'src/currency.service';
 import Swal from 'sweetalert2';
 
@@ -26,6 +27,7 @@ export class PayComponent {
     private OrderService: OrderService,
     private AuthService: AuthService,
     private currencyService: CurrencyService,
+    private PaymentService: PaymentService
   ) {
     this.orderForm = this.formBuilder.group({
       userId: [''],
@@ -33,10 +35,12 @@ export class PayComponent {
       full_name: [''],
       address: [''],
       phone: [''],
-      notes: ['']
+      notes: [''],
+      paymentMethod: ['cod']
     });
   }
   ngOnInit() {
+
     const { id }: any = getDecodedAccessToken();
     this.userId = id
     if (this.userId === '') return;
@@ -62,6 +66,9 @@ export class PayComponent {
   onHandlePay() {
     const { id }: any = getDecodedAccessToken();
     if (this.orderForm.valid) {
+      const formData = this.orderForm.value;
+      const paymentMethod = formData.paymentMethod;
+
       const products = this.cart.data.products.map((product: any) => {
         return {
           productId: product.productId,
@@ -78,25 +85,50 @@ export class PayComponent {
         phone: this.orderForm.value.phone || '',
         notes: this.orderForm.value.notes || '',
         products: products,
-        total: this.cart.data.total
+        total: this.cart.data.total,
       };
-      this.OrderService.addOrder(order).subscribe(
-        (response: any) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Đã mua đơn hàng thành công!',
-            showConfirmButton: true,
-            timer: 1500
-          });
-          this.cartService.removeAllCart(id).subscribe(() => {
-          });
-          this.router.navigate(['/']);
-        },
-        (error) => {
-          console.log(error.message);
-        }
-      );
+      if (paymentMethod == 'cod') {
+        this.OrderService.addOrder(order).subscribe(
+          (response: any) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Đã mua đơn hàng thành công!',
+              showConfirmButton: true,
+              timer: 1500
+            });
+            this.cartService.removeAllCart(id).subscribe(() => {
+            });
+            this.router.navigate(['/orders']);
+          },
+          (error) => {
+            console.log(error.message);
+          }
+        );
+      } else if (paymentMethod == 'momo') {
+        this.PaymentService.addMomo(order).subscribe(
+          (response: any) => {
+            if (response) {
+              window.location.href = response.payUrl
+            }
+          },
+          (error) => {
+            console.log(error.message);
+          }
+        );
+
+      } else if (paymentMethod == 'paypal') {
+        this.PaymentService.addPaypal(order).subscribe(
+          (response: any) => {
+            if (response) {
+              window.location.href = response.approval_url
+            }
+          },
+          (error) => {
+            console.log(error.message);
+          }
+        );
+      }
     }
   }
   formatCurrency(number: any): string {

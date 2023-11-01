@@ -39,9 +39,8 @@ export class AdminOrderDetaiPageComponent {
       this.orderService.getOrderById(idOrder).subscribe((data: any) => {
         this.order = data.order;
         this.orderForm.patchValue({
-          status: this.order.status,
+          status: this.order.status._id,
         });
-        this.selectedStatus = this.order.status
         this.AuthService.getUserById(this.order.userId).subscribe(
           (data: any) => {
             this.user = data;
@@ -55,7 +54,6 @@ export class AdminOrderDetaiPageComponent {
     });
     this.StatusService.getAllStatus().subscribe((data: any) => {
       this.status = data.status
-
     }, error => {
       console.log(error.message);
     })
@@ -92,7 +90,7 @@ export class AdminOrderDetaiPageComponent {
             'success'
           )
           this.scrollToTop()
-          this.router.navigate(['/orders']);
+          this.router.navigate(['/admin/orders']);
         })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Hiển thị thông báo hủy xóa sản phẩm
@@ -104,15 +102,40 @@ export class AdminOrderDetaiPageComponent {
       }
     })
   }
+  onHandleUpdate(): void {
+    if (this.orderForm.valid) {
+      const values: any = {
+        _id: this.order._id,
+        userId: this.order.userId,
+        products: this.order.products,
+        phone: this.order.phone,
+        address: this.order.address,
+        total: this.order.total,
+        status: this.orderForm.value.status || ''
+      };
+      // Người dùng không chọn ảnh mới, chỉ cập nhật thông tin sản phẩm
+      this.orderService.updateOrder(values).subscribe(
+        (status) => {
+          // Xử lý khi sản phẩm được cập nhật thành công
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cập nhật trạng thái thành công!',
+            showConfirmButton: true,
+            timer: 1500
+          });
+          this.router.navigate([`/admin/orders/${this.order._id}`]);
+        },
+        (error) => {
+          // Xử lý khi có lỗi trong quá trình cập nhật sản phẩm
+          console.log(error.message);
+        }
+      );
+
+
+    }
+  }
   scrollToTop() {
     this.elementRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  selectStatus(status: any) {
-    if (status === this.selectedStatus) {
-      this.selectedStatus = 'Trạng thái mặc định';
-    } else {
-      this.selectedStatus = status;
-    }
-  }
-
 }

@@ -1,23 +1,26 @@
 <section class="bg-sand padding-large">
     <div class="container">
         <div class="row">
-
             <div class="col-md-6">
                 <a href="#" class="product-image"><img *ngIf="product?.image?.url" src="{{product.image?.url}}"></a>
+                <div class="des">Mô Tả</div>
+                <p class="description" *ngIf="product?.description">
+                    {{product.description}}
+                </p>
             </div>
-
             <div class="col-md-6 pl-5">
                 <div class="product-detail">
                     <h1 class="section-title" *ngIf="product?.product_name">{{product.product_name}}</h1>
+                    <div class="sl ">Đã bán</div>
+                    <p class="fic" *ngIf="product.sold_quantity">{{product.sold_quantity}}</p>
                     <div class="sl ">Tác giả</div>
-                    <p class="fic" *ngIf="product?.author">{{product.author}}</p>
+                    <p class="fic" *ngIf="product.author">{{product.author}}</p>
                     <div class="sl ">Giá </div>
-                    <span class="price" *ngIf="product?.product_price">{{ formatCurrency(product.product_price)
+                    <span class="price" *ngIf="product.product_price">{{ formatCurrency(product.product_price)
                         }}₫</span>
-                    <div class="sl ">Mô Tả</div>
-                    <p class="description" *ngIf="product?.description">
-                        {{product.description}}
-                    </p>
+                    <div class="sl ">Hàng tồn </div>
+                    <p class="fic" *ngIf="product.stock_quantity">{{product.stock_quantity}} quyển</p>
+
                     <div class="input-group il">
                         <p class="sl ">Số lượng: </p>
                         <div id="updateQuantity"
