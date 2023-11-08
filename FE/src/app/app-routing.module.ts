@@ -26,6 +26,17 @@ import { ListOrderPageComponent } from './pages/admin/order-page/list-order-page
 import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-order-detai-page/admin-order-detai-page.component';
 import { ProfileComponent } from './pages/view/auth/profile/profile.component';
 import { UserComponent } from './pages/view/auth/user/user.component';
+import { AdminNewsListComponent } from './pages/admin/news/admin-news-list/admin-news-list.component';
+import { AdminNewAddComponent } from './pages/admin/news/admin-new-add/admin-new-add.component';
+import { AdminNewEditComponent } from './pages/admin/news/admin-new-edit/admin-new-edit.component';
+import { AdminUsersComponent } from './pages/admin/users/admin-users/admin-users.component';
+import { AdminUserEditComponent } from './pages/admin/users/admin-user-edit/admin-user-edit.component';
+import { AdminCouponsComponent } from './pages/admin/coupons/admin-coupons/admin-coupons.component';
+import { AdminAddCouponComponent } from './pages/admin/coupons/admin-add-coupon/admin-add-coupon.component';
+import { AdminUpdateCouponComponent } from './pages/admin/coupons/admin-update-coupon/admin-update-coupon.component';
+import { AuthGuard } from './auth.guard';
+import { AdminCommentsComponent } from './pages/admin/comments/admin-comments/admin-comments.component';
+import { AdminCommentDetailComponent } from './pages/admin/comments/admin-comment-detail/admin-comment-detail.component';
 
 
 const routes: Routes = [
@@ -51,7 +62,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: "admin", component: AdminLayoutComponent, children: [
+    path: "admin", component: AdminLayoutComponent, canActivate: [AuthGuard], children: [
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
       { path: "dashboard", component: DashboardPageComponent },
       { path: "categories", component: AdminCategoryComponent },
@@ -63,7 +74,18 @@ const routes: Routes = [
       { path: "products/:id/update", component: UpdateProductComponent },
       { path: "products/delete", component: ProductDeleteComponent },
       { path: "orders", component: ListOrderPageComponent },
-      { path: "orders/:id", component: AdminOrderDetaiPageComponent }
+      { path: "orders/:id", component: AdminOrderDetaiPageComponent },
+      { path: "blogs", component: AdminNewsListComponent },
+      { path: "blogs/add", component: AdminNewAddComponent },
+      { path: "blogs/:id/update", component: AdminNewEditComponent },
+      { path: "users", component: AdminUsersComponent },
+      { path: "users/:id/update", component: AdminUserEditComponent },
+      { path: "coupons", component: AdminCouponsComponent },
+      { path: "coupons/add", component: AdminAddCouponComponent },
+      { path: "coupons/:id/update", component: AdminUpdateCouponComponent },
+      { path: "comments", component: AdminCommentsComponent },
+      { path: "comments/:id/detail", component: AdminCommentDetailComponent },
+
     ]
 
   },

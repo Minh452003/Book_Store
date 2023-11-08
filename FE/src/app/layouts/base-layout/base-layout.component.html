@@ -33,10 +33,10 @@
                         <i class='bx bx-cart cart'></i>
                     </a>
                 </div>
-                <div class="p-1 dropdown font">
-                    <a id="dropdownUserButton" data-mdb-toggle="dropdown" aria-expanded="false" routerLink="/profile">
+                <div class="p-1 dropdown font" *ngIf="!user">
+                    <div id="dropdownUserButton" data-mdb-toggle="dropdown" aria-expanded="false" routerLink="/profile">
                         <i class='bx bxs-user user1'></i>
-                    </a>
+                    </div>
                     <ul class="dropdown-menu drop-user p-2" aria-labelledby="dropdownUserButton">
                         <div class="d-flex flex-column align-items-center">
                             <p (click)="openDialog('signin')" class="open-modal">Đăng nhập</p>
@@ -44,19 +44,21 @@
                         </div>
                     </ul>
                 </div>
-                <!-- <div class="p-1 dropdown w-10 font">
+                <div class="p-1 dropdown w-10 font" *ngIf="user">
                     <a routerLink="/profile" id="dropdownUserButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <img src="" alt="avatar" class="w-75 avatar" />
+                        <img *ngIf="user.avatar" src={{user.avatar.url}} class="w-75 avatar" />
+                        <img *ngIf="!user.avatar" src='https://cdn-icons-png.flaticon.com/512/6596/6596121.png'
+                            class="w-75 avatar" />
                     </a>
                     <ul class="dropdown-menu drop-user p-2" aria-labelledby="dropdownUserButton">
                         <div class="d-flex flex-column align-items-start">
-                            <a class="d-flex flex-column">
-                                <span class="fw-semibold"> </span>
-                            </a>
-                            <button class="btn-logout">Log out</button>
+                            <div (click)="handleLogout()" class="d-flex flex-column open-modal">
+                                <span class="fw-semibold open-modal"> {{user.full_name }}</span>
+                            </div>
+                            <button class="btn-logout open-modal" (click)="handleLogout()">Đăng xuất</button>
                         </div>
                     </ul>
-                </div> -->
+                </div>
             </div>
             <hr class="hr-full">
         </div>

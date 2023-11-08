@@ -42,6 +42,16 @@ import { ListOrderPageComponent } from './pages/admin/order-page/list-order-page
 import { AdminOrderDetaiPageComponent } from './pages/admin/order-page/admin-order-detai-page/admin-order-detai-page.component';
 import { ProfileComponent } from './pages/view/auth/profile/profile.component';
 import { UserComponent } from './pages/view/auth/user/user.component';
+import { AdminNewsListComponent } from './pages/admin/news/admin-news-list/admin-news-list.component';
+import { AdminNewAddComponent } from './pages/admin/news/admin-new-add/admin-new-add.component';
+import { AdminNewEditComponent } from './pages/admin/news/admin-new-edit/admin-new-edit.component';
+import { AdminUsersComponent } from './pages/admin/users/admin-users/admin-users.component';
+import { AdminUserEditComponent } from './pages/admin/users/admin-user-edit/admin-user-edit.component';
+import { AdminCouponsComponent } from './pages/admin/coupons/admin-coupons/admin-coupons.component';
+import { AdminAddCouponComponent } from './pages/admin/coupons/admin-add-coupon/admin-add-coupon.component';
+import { AdminUpdateCouponComponent } from './pages/admin/coupons/admin-update-coupon/admin-update-coupon.component';
+import { AdminCommentsComponent } from './pages/admin/comments/admin-comments/admin-comments.component';
+import { AdminCommentDetailComponent } from './pages/admin/comments/admin-comment-detail/admin-comment-detail.component';
 
 
 @NgModule({
@@ -78,6 +88,16 @@ import { UserComponent } from './pages/view/auth/user/user.component';
     AdminOrderDetaiPageComponent,
     ProfileComponent,
     UserComponent,
+    AdminNewsListComponent,
+    AdminNewAddComponent,
+    AdminNewEditComponent,
+    AdminUsersComponent,
+    AdminUserEditComponent,
+    AdminCouponsComponent,
+    AdminAddCouponComponent,
+    AdminUpdateCouponComponent,
+    AdminCommentsComponent,
+    AdminCommentDetailComponent,
 
   ],
   imports: [

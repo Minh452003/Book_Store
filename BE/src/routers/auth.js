@@ -1,5 +1,5 @@
 import express from "express";
-import { getAll, getOneById, logout, refreshToken, removebyAdmin, removebyUser, signin, signup, updateUser } from "../controllers/auth.js";
+import { getAll, getOneById, logout, refreshToken, removebyAdmin, removebyUser, signin, signup, update, updateUser } from "../controllers/auth.js";
 import { authorization } from "../middlewares/authorization.js";
 import { authenticate } from "../middlewares/authenticate.js";
 
@@ -15,6 +15,7 @@ routerAuth.post("/signup", signup);
 routerAuth.post("/signin", signin);
 routerAuth.post("/logout", authenticate, logout);
 routerAuth.post("/refresh", refreshToken);
+routerAuth.patch("/user/:id", update)
 
 
 export default routerAuth;

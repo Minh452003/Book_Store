@@ -1,0 +1,22 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên Sách</th>
+            <th scope="col">Số lượng đánh giá </th>
+            <th scope="col" [width]="110">Chức Năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comment of comments; index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>{{comment?.product_name}}</td>
+            <td>{{comment?.comments_count}}</td>
+            <td>
+                <button class="btn btn-danger" routerLink="/admin/comments/{{comment._id}}/detail"><i
+                        class='bx bx-detail'></i></button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
