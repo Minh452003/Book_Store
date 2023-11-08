@@ -24,4 +24,7 @@ export class AuthService {
   removeUser(id: number): Observable<IUser> {
     return this.http.delete<IUser>(`http://localhost:8080/api/users/${id}`)
   }
+  updateUser(user: IUser): Observable<IUser> {
+    return this.http.patch<IUser>(`http://localhost:8080/api/user/${user._id}`, user)
+  }
 }

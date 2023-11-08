@@ -316,3 +316,40 @@ export const refreshToken = async (req, res) => {
     }
 
 }
+export const update = async (req, res) => {
+
+    try {
+        const { name, email, address, avatar, role } = req.body;
+        const id = req.params.id;
+        const body = req.body;
+        const { error } = userSchema.validate(body, { abortEarly: false });
+        if (error) {
+            const errors = error.details.map((err) => err.message);
+            return res.status(400).json({
+                message: errors
+            })
+        }
+        const data = await user.findByIdAndUpdate({ _id: id }, {
+            full_name,
+            email,
+            address,
+            role,
+            avatar
+        }, {
+            new: true,
+        });
+        if (data.length === 0) {
+            return res.status(400).json({
+                message: "Cập nhật danh mục thất bại",
+            })
+        }
+        return res.status(200).json({
+            message: "Cập nhật danh mục thành công",
+            data,
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: error,
+        })
+    }
+}

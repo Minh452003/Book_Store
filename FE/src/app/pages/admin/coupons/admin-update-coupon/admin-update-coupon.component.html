@@ -1,0 +1,77 @@
+<form (ngSubmit)="onHandleUpdate()" [formGroup]="couponForm">
+    <!-- Name book input -->
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Tên danh mục</label>
+        <input type="text" formControlName="coupon_name" class="form-control" />
+        <div *ngIf="couponForm.controls.coupon_name?.errors?.['required'] && couponForm.controls.coupon_name?.touched  || submitted"
+            class="text-danger">
+            Tên phiếu giảm giá là bắt buộc
+        </div>
+        <div *ngIf="couponForm.controls.coupon_name?.errors?.['minlength'] && couponForm.controls.coupon_name?.touched"
+            class="text-danger">
+            Tên phiếu giảm giá có ít nhất 4 ký tự
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Mã giảm giá</label>
+        <input type="text" formControlName="coupon_code" class="form-control" />
+        <div *ngIf="couponForm.controls.coupon_code?.errors?.['required'] && couponForm.controls.coupon_code?.touched  || submitted"
+            class="text-danger">
+            Mã giảm giá là bắt buộc
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Nội dung</label>
+        <input type="text" formControlName="coupon_content" class="form-control" />
+        <div *ngIf="couponForm.controls.coupon_content?.errors?.['required'] && couponForm.controls.coupon_content?.touched  || submitted"
+            class="text-danger">
+            Tên phiếu giảm giá là bắt buộc
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label">Số lượng</label>
+        <input type="number" class="form-control" formControlName="coupon_quantity" />
+        <div *ngIf="couponForm.controls.coupon_quantity?.errors?.['required'] && couponForm.controls.coupon_quantity?.touched || submitted"
+            class="text-danger">
+            Số lượng là bắt buộc
+        </div>
+        <div *ngIf="couponForm.controls.coupon_quantity?.errors?.['min'] && couponForm.controls.coupon_quantity?.touched"
+            class="text-danger">
+            Số lượng phải lớn hơn 0
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label">% giảm giá</label>
+        <input type="number" class="form-control" formControlName="discount_amount" />
+        <div *ngIf="couponForm.controls.discount_amount?.errors?.['required'] && couponForm.controls.discount_amount?.touched || submitted"
+            class="text-danger">
+            % là bắt buộc
+        </div>
+        <div *ngIf="couponForm.controls.discount_amount?.errors?.['min'] && couponForm.controls.discount_amount?.touched"
+            class="text-danger">
+            % phải lớn hơn 0
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example1">Ngày hết hạn</label>
+        <input type="date" formControlName="expiration_date" class="form-control" />
+        <div *ngIf="couponForm.controls.expiration_date?.errors?.['required'] && couponForm.controls.expiration_date?.touched  || submitted"
+            class="text-danger">
+            Ngày hết hạn phiếu giảm giá là bắt buộc
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label">Điều kiện</label>
+        <input type="number" class="form-control" formControlName="min_purchase_amount" />
+        <div *ngIf="couponForm.controls.min_purchase_amount?.errors?.['required'] && couponForm.controls.min_purchase_amount?.touched || submitted"
+            class="text-danger">
+            Điều kiện là bắt buộc
+        </div>
+        <div *ngIf="couponForm.controls.min_purchase_amount?.errors?.['min'] && couponForm.controls.min_purchase_amount?.touched"
+            class="text-danger">
+            Điều kiện phải lớn hơn 0
+        </div>
+    </div>
+    <!-- Submit button -->
+    <button type="submit " class="btn btn-primary btn-block mb-4">Thêm phiếu giảm giá</button>
+</form>

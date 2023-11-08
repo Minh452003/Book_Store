@@ -6,7 +6,7 @@ export interface IUser {
     password?: string
     confirmPassword?: string
     address?: string;
-    image?: IImage | any;
+    avatar?: IImage | any;
     role?: string;
     googleId?: string;
     facebookId?: string;

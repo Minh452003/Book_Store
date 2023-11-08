@@ -1,0 +1,34 @@
+<button class="btn btn-danger"> <a routerLink="/admin/coupons/add" class="btn1">Thêm Mới</a></button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Phiếu giảm giá </th>
+            <th scope="col">Mã giảm giá</th>
+            <th scope="col" [width]="200">Nội dung</th>
+            <th scope="col" [width]="100">Số lượng</th>
+            <th scope="col" [width]="100">% giảm</th>
+            <th scope="col">Thời gian</th>
+            <th scope="col" [width]="100">Điều kiện</th>
+            <th scope="col" [width]="140">Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let coupon of coupons; index as i">
+            <td scope="row">{{i+1}}</td>
+            <td>{{coupon.coupon_name}}</td>
+            <td>{{coupon.coupon_code}}</td>
+            <td>{{coupon.coupon_content}}</td>
+            <td>{{coupon.coupon_quantity}}</td>
+            <td>{{coupon.discount_amount}}</td>
+            <td>{{ formatCreatedAt(coupon.expiration_date)}}</td>
+            <td>{{coupon.min_purchase_amount}}</td>
+            <td>
+                <button class="btn btn-danger " (click)="removeItem(coupon._id)!"><i
+                        class='bx bxs-no-entry'></i></button>
+                <button class="btn btn-primary m-2 " routerLink="/admin/coupons/{{coupon._id}}/update"><i
+                        class='bx bxs-pencil'></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
