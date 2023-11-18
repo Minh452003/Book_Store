@@ -22,6 +22,7 @@ export const getCommentFromProduct = async (req, res) => {
             productId: comment.productId,
             description: comment.description,
             formattedCreatedAt: comment.formattedCreatedAt,
+            rating: comment.rating
         }));
 
         return res.status(200).json({
@@ -59,13 +60,13 @@ export const getOneComment = async (req, res) => {
 
 export const create = async (req, res) => {
     try {
-        const { userId, rating, description, productId } = req.body;
+        const { userId, rating, description, productId, orderId, image } = req.body;
         const { error } = CommentSchema.validate(req.body, { abortEarly: false });
         if (error) {
             const errors = error.details.map((err) => err.message);
             return res.status(400).json({
                 message: errors
-            })
+            });
         }
         if (!userId) {
             return res.status(401).json({
@@ -74,7 +75,6 @@ export const create = async (req, res) => {
         }
         // Check if the product exists
         const product = await Product.findById(productId);
-
         if (!product) {
             return res.status(404).json({
                 message: "Sản phẩm không tồn tại.",
@@ -82,56 +82,46 @@ export const create = async (req, res) => {
         }
         // Check if the user exists
         const user = await Auth.findById(userId);
-
         if (!user) {
             return res.status(404).json({
                 message: "Người dùng không tồn tại.",
             });
         }
 
-        // Check if the user already reviewed the product
-        const existingComment = await Comment.findOne({ userId, productId });
+        // Tìm tất cả các đơn hàng của người dùng
+        const orders = await Order.findOne({ _id: orderId });
 
-        if (existingComment) {
-            return res.status(401).json({
-                message: "Bạn đã đánh giá sản phẩm này trước đó.",
+        if (orders.hasReviewed === false) {
+            // Nếu sản phẩm có thể đánh giá, đánh giá sản phẩm và cập nhật trạng thái đã đánh giá
+            const comment = await Comment.create({
+                userId,
+                rating,
+                description,
+                productId,
+                image
             });
-        }
-        const user_fullName = user?.user_fullName;
-        const user_avatar = user?.user_avatar;
-        const comment = await Comment.create({
-            user_fullName,
-            user_avatar,
-            userId,
-            rating,
-            description,
-            productId,
-        });
-        const comments = await Comment.find({ productId });
-        const totalRating = comments.reduce(
-            (totalRating, rating) => totalRating + rating.rating,
-            0
-        );
-        // Tính toán số lượng sao và lươtj đánh giá
-        const reviewCount = comments.length;
-        const averageScore = totalRating / reviewCount;
-
-        product.average_score = Math.round(averageScore);
-        product.review_count = reviewCount;
-        await product.save();
-        if (user) {
+            // Cập nhật trường hasReviewed của sản phẩm trong mảng products của đơn hàng
+            orders.hasReviewed = true;
+            await orders.save();
             return res.status(200).json({
                 message: "Bạn đã đánh giá thành công sản phẩm này!",
                 success: true,
                 comment,
             });
+        } else {
+            return res.status(401).json({
+                message: "Bạn đã đánh giá sản phẩm này trước đó.",
+            });
         }
     } catch (error) {
+        console.log(error.message);
+        // Xử lý lỗi và trả về lỗi nếu cần thiết
         return res.status(400).json({
-            message: error,
+            message: error.message,
         });
     }
-}
+};
+
 
 
 export const updateComment = async (req, res) => {

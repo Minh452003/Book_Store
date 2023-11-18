@@ -9,6 +9,8 @@ import { CurrencyService } from 'src/currency.service';
 import { getDecodedAccessToken } from 'src/app/decoder';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommentService } from 'src/app/services/comments/comment.service';
+import { IComment } from 'src/app/interfaces/comment';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,18 +23,18 @@ export class ProductDetailComponent {
   product !: IProduct;
   products: IProduct[] = [];
   categories: ICategory[] = [];
-
+  comments !: IComment[];
   formData: { description: string, userId: string | any, productId: string } = { description: '', userId: '', productId: '' };
-  userCart = getDecodedAccessToken()
+  userCart: any = getDecodedAccessToken()
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private FormBuilder: FormBuilder,
     private elementRef: ElementRef,
     private currencyService: CurrencyService,
     private CartService: CartService,
+    private CommentService: CommentService,
   ) {
     this.route.paramMap.subscribe(params => {
       const idProduct = String(params.get('id'));
@@ -44,11 +46,24 @@ export class ProductDetailComponent {
         this.formData.productId = idProduct;
       }, error => console.log(error.message)
       )
+      // -------------------------
+      this.CommentService.getCommentByProduct(idProduct).subscribe((comment: any) => {
+        this.comments = comment.comments;
+        this.countCMT = this.comments.length
+      })
     });
     // ----------------------------------
     this.productService.getProducts().subscribe((products: any) => {
       this.products = products?.product?.docs.filter((product: IProduct) => product?.categoryId === this.product?.categoryId);
     })
+  }
+  // ----------------------------
+  onHandleRemove(id: string | any) {
+    // Thực hiện xoá bình luận
+    this.CommentService.removeComment(id).subscribe(comment => {
+      const newComment = this.comments.filter((cm) => cm._id != id);
+      this.comments = newComment;
+    });
   }
   // ----------------------------
   scrollToTop() {

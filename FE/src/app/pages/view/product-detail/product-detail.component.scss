@@ -15,6 +15,7 @@
 
 .btn {
     float: right;
+    margin-left: 10px;
 }
 
 .fic {
@@ -137,6 +138,11 @@
     color: #393280;
     margin-left: 5%;
     width: 100%;
+}
+
+.bx.bxs-star {
+    font-size: 15px;
+    color: gold;
 }
 
 .cursor:hover {
