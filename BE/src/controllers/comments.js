@@ -2,6 +2,7 @@ import Comment from "../models/comments.js";
 import { CommentSchema } from "../schemas/comments.js";
 import Product from "../models/products.js";
 import Auth from "../models/auth.js";
+import Order from "../models/orders.js"
 
 export const getCommentFromProduct = async (req, res) => {
     try {
@@ -60,7 +61,7 @@ export const getOneComment = async (req, res) => {
 
 export const create = async (req, res) => {
     try {
-        const { userId, rating, description, productId, orderId, image } = req.body;
+        const { userId, rating, description, productId } = req.body;
         const { error } = CommentSchema.validate(req.body, { abortEarly: false });
         if (error) {
             const errors = error.details.map((err) => err.message);
@@ -89,20 +90,35 @@ export const create = async (req, res) => {
         }
 
         // Tìm tất cả các đơn hàng của người dùng
-        const orders = await Order.findOne({ _id: orderId });
-
-        if (orders.hasReviewed === false) {
+        const orders = await Order.find({ userId });
+        // Kiểm tra từng đơn hàng
+        const productList = [];
+        for (const order of orders) {
+            for (const product of order.products) {
+                productList.push(product);
+            }
+        }
+        const productToReview = productList.find((product) => {
+            return (
+                !product.hasReviewed && product.productId == productId
+            );
+        });
+        if (productToReview) {
             // Nếu sản phẩm có thể đánh giá, đánh giá sản phẩm và cập nhật trạng thái đã đánh giá
             const comment = await Comment.create({
                 userId,
                 rating,
                 description,
                 productId,
-                image
             });
             // Cập nhật trường hasReviewed của sản phẩm trong mảng products của đơn hàng
-            orders.hasReviewed = true;
-            await orders.save();
+            const orderToUpdate = orders.find((order) => {
+                return order.products.some((product) => product._id == productToReview._id);
+            });
+            const productToUpdate = orderToUpdate.products.find((product) => product._id == productToReview._id);
+            productToUpdate.hasReviewed = true;
+            // Lưu đơn hàng sau khi đã cập nhật
+            await orderToUpdate.save();
             return res.status(200).json({
                 message: "Bạn đã đánh giá thành công sản phẩm này!",
                 success: true,

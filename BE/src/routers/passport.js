@@ -12,12 +12,12 @@ routerPassport.get('/auth/google',
     ));
 routerPassport.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: `http://localhost:8088/api/google/success`,
-        failureRedirect: `http://localhost:5173/error`
+        successRedirect: `http://localhost:8080/api/google/success`,
+        failureRedirect: `http://localhost:4200/signin`
     }));
 routerPassport.use('/auth/logout', LogoutGoogle);
 routerPassport.use('/google/success', LoginWithGoogle);
 // 
 routerPassport.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'public_profile'] }));
-routerPassport.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: 'http://localhost:5173/signin' }), LoginWithFacebook);
+routerPassport.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: 'http://localhost:4200/signin' }), LoginWithFacebook);
 export default routerPassport;

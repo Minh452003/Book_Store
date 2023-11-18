@@ -18,6 +18,10 @@ const orderSchema = mongoose.Schema({
       product_price: Number,
       image: String,
       stock_quantity: Number,
+      hasReviewed: {
+        type: Boolean,
+        default: false, // Ban đầu, đánh dấu là chưa đánh giá
+      },
     }
   ],
   total: {
@@ -48,11 +52,7 @@ const orderSchema = mongoose.Schema({
   },
   payerId: {
     type: String
-  },
-  hasReviewed: {
-    type: Boolean,
-    default: false, // Ban đầu, đánh dấu là chưa đánh giá
-  },
+  }
 },
   { timestamps: true, versionKey: false });
 export default mongoose.model("order", orderSchema);

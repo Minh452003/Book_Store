@@ -99,7 +99,7 @@ export class PayComponent {
             });
             this.cartService.removeAllCart(id).subscribe(() => {
             });
-            this.router.navigate(['/orders']);
+            this.router.navigate(['/profile/orders']);
           },
           (error) => {
             console.log(error.message);

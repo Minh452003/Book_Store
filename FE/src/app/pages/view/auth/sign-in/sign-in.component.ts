@@ -46,4 +46,7 @@ export class SignInComponent {
       )
     }
   }
+  handleGoogleLogin() {
+    window.location.href = "http://localhost:8080/api/auth/google";
+  }
 }
