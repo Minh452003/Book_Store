@@ -16,7 +16,6 @@ import Swal from 'sweetalert2';
 export class AddProductComponent {
   categories: ICategory[] = [];
   submitted = false;
-
   productForm = this.formBuilder.group({
     product_name: ['', [Validators.required, Validators.minLength(4)]],
     author: ['', [Validators.required, Validators.minLength(4)]],

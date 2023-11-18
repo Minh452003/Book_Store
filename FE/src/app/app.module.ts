@@ -9,7 +9,6 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DashboardPageComponent } from './pages/admin/dashboard-page/dashboard-page.component';
@@ -52,6 +51,7 @@ import { AdminAddCouponComponent } from './pages/admin/coupons/admin-add-coupon/
 import { AdminUpdateCouponComponent } from './pages/admin/coupons/admin-update-coupon/admin-update-coupon.component';
 import { AdminCommentsComponent } from './pages/admin/comments/admin-comments/admin-comments.component';
 import { AdminCommentDetailComponent } from './pages/admin/comments/admin-comment-detail/admin-comment-detail.component';
+import { ProductSellComponent } from './components/product-sell/product-sell.component';
 
 
 @NgModule({
@@ -98,6 +98,7 @@ import { AdminCommentDetailComponent } from './pages/admin/comments/admin-commen
     AdminUpdateCouponComponent,
     AdminCommentsComponent,
     AdminCommentDetailComponent,
+    ProductSellComponent,
 
   ],
   imports: [
@@ -105,7 +106,6 @@ import { AdminCommentDetailComponent } from './pages/admin/comments/admin-commen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule,
     ReactiveFormsModule,
     MatBadgeModule,
     MatDialogModule,

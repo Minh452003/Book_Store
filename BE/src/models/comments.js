@@ -20,6 +20,9 @@ const CommentSchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  image: {
+    type: Array
+  },
   createdAt: {
     type: Date,
     default: Date.now
