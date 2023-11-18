@@ -74,7 +74,7 @@ export class OrderDetailComponent {
             'success'
           )
           this.scrollToTop()
-          this.router.navigate(['/orders']);
+          this.router.navigate(['/profile/orders']);
         })
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         // Hiển thị thông báo hủy xóa sản phẩm

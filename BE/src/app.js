@@ -18,6 +18,7 @@ import routerPassport from "./routers/passport.js";
 import session from 'express-session'
 import passport from "passport";
 import routerBlog from "./routers/blogs.js";
+import routerStatiscal from "./routers/statiscal.js";
 
 
 dotenv.config();
@@ -50,6 +51,7 @@ app.use("/api", routerUser);
 app.use("/api", routerPayment);
 app.use("/api", routerPassport);
 app.use("/api", routerBlog);
+app.use("/api", routerStatiscal);
 
 app.listen(8080, async () => {
     await mongoose.connect(process.env.URL_MONGO, { useNewUrlParser: true, useUnifiedTopology: true });

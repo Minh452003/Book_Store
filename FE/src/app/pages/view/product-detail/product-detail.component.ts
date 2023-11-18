@@ -26,7 +26,12 @@ export class ProductDetailComponent {
   comments !: IComment[];
   formData: { description: string, userId: string | any, productId: string } = { description: '', userId: '', productId: '' };
   userCart: any = getDecodedAccessToken()
-
+  commentForm = this.formBuilder.group({
+    userId: [''],
+    productId: [''], // Truyền giá trị của productId từ instance của IProduct
+    description: [''],
+    rating: [null],
+  })
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -34,6 +39,7 @@ export class ProductDetailComponent {
     private elementRef: ElementRef,
     private currencyService: CurrencyService,
     private CartService: CartService,
+    private formBuilder: FormBuilder,
     private CommentService: CommentService,
   ) {
     this.route.paramMap.subscribe(params => {
@@ -51,11 +57,18 @@ export class ProductDetailComponent {
         this.comments = comment.comments;
         this.countCMT = this.comments.length
       })
+      // 
+      const { id }: any = getDecodedAccessToken()
+      this.commentForm.patchValue({
+        userId: id,
+        productId: idProduct
+      });
     });
     // ----------------------------------
     this.productService.getProducts().subscribe((products: any) => {
       this.products = products?.product?.docs.filter((product: IProduct) => product?.categoryId === this.product?.categoryId);
     })
+
   }
   // ----------------------------
   onHandleRemove(id: string | any) {
@@ -86,6 +99,41 @@ export class ProductDetailComponent {
       return ''; // Hoặc giá trị mặc định khác
     }
   }
+  // -------------------
+  onHandleAddComment() {
+    if (this.commentForm.valid) {
+      const formValue = this.commentForm.value;
+      this.CommentService.addComment(formValue).subscribe(
+        (data: IComment | any) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Đã thêm sản phẩm vào giỏ hàng!',
+            showConfirmButton: true,
+            timer: 1500
+          });
+          this.route.paramMap.subscribe(params => {
+            const id = String(params.get('id'));
+            this.CommentService.getCommentByProduct(id).subscribe((comment: any) => {
+              this.comments = comment.comments;
+              this.countCMT = this.comments.length;
+            });
+          });
+        },
+        (error) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: error.error.message,
+            text: 'Mua sản phẩm này thì mới được đánh giá.',
+            showConfirmButton: true,
+            timer: 1500
+          });
+        }
+      );
+    }
+  }
+
   handleAddToCart() {
     const { id }: any = getDecodedAccessToken()
     if (!id) {

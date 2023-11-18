@@ -42,10 +42,6 @@
                                     <td>
                                         <button class="btn btn-primary m-2 " routerLink="/orders/{{order._id}}">
                                             <i class='bx bxs-pencil'></i></button>
-                                        <button type="button" class="btn btn-success m-2" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" (click)="onHandleComment(order)">
-                                            <i class='bx bx-message-dots'></i>
-                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -60,52 +56,4 @@
 <div class="errorcart" *ngIf="!detailOrder.length">
     <h1 class="warning-error d-flex justify-content-center">Bạn không có đơn hàng nào !!!</h1>
     <a class=" mt-3 d-flex justify-content-center p-0" routerLink="/" role="button">Quay lại mua hàng</a>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Phản hồi</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="comment-box">
-                    <form (ngSubmit)="onHandleAddComment({order:commentData })" [formGroup]="commentForm"
-                        id="form-vote">
-                        <div>
-                            <div class="rating">
-                                <input type="radio" formControlName="rating" value={{5}} id="inp5"><label
-                                    for="inp5">☆</label>
-                                <input type="radio" formControlName="rating" value={{4}} id="inp4"><label
-                                    for="inp4">☆</label>
-                                <input type="radio" formControlName="rating" value={{3}} id="inp3"><label
-                                    for="inp3">☆</label>
-                                <input type="radio" formControlName="rating" value={{2}} id="inp2"><label
-                                    for="inp2">☆</label>
-                                <input type="radio" formControlName="rating" value={{1}} id="inp1"><label
-                                    for="inp1">☆</label>
-                            </div>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Nội dung:</label>
-                            <textarea class="form-control" rows="4" formControlName="description"></textarea>
-                        </div>
-                        <input type="text" formControlName="userId" [value]="commentData?.userId" hidden>
-                        <input type="text" formControlName="products" [value]="commentData?.products" hidden>
-                        <!-- Image input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Ảnh</label>
-                            <input type="file" class="form-control" name="image" />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                            <button type="button" class="btn btn-primary" type="submit">Đánh giá</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>

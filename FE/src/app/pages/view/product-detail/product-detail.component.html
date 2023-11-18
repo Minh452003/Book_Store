@@ -41,9 +41,16 @@
     <hr>
     <div class="container mt-5">
         <div class="title">Comment({{countCMT}})</div>
+
         <div class="d-flex justify-content row">
             <div class="col-md-8">
                 <div class="d-flex flex-column comment-section">
+                    <div class="bg-light p-2">
+                        <button type="button" class="btn btn-success m-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            <i class='bx bx-message-dots'> Đánh giá</i>
+                        </button>
+                    </div>
                     <div class="bg-white p-2" *ngFor="let cm of comments">
                         <div class="d-flex flex-row user-info">
                             <img *ngIf="cm.userId.avatar" class="rounded-circle" src={{cm.userId.avatar.url}} width="60"
@@ -69,24 +76,7 @@
                         </div>
 
                     </div>
-                    <!-- <div class="bg-light p-2" *ngIf="formData.userId">
-                        <form (ngSubmit)="onHandleAddComment()" [formGroup]="commentForm">
-                            <input type="hidden" formControlName="userId">
-                            <input type="hidden" formControlName="productId">
-                            <div class="d-flex flex-row align-items-start">
-                                <img class="rounded-circle"
-                                    src="https://res.cloudinary.com/diqyzhuc2/image/upload/v1683285518/hoaUi/icon_sacea8-removebg_gkhuzj.png"
-                                    width="40">
-                                <textarea class="form-control ml-1 shadow-none textarea"
-                                    formControlName="description"></textarea>
-                            </div>
-                            <div class="mt-2 text-right">
-                                <button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment</button>
-                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none"
-                                    type="button">Cancel</button>
-                            </div>
-                        </form>
-                    </div> -->
+
                     <div class="bg-light p-2" *ngIf="!userCart.id">
                         <p class="tb">Bạn chưa đăng nhập.</p>
                     </div>
@@ -123,3 +113,46 @@
         </div>
     </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Phản hồi</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="comment-box">
+                    <form (ngSubmit)="onHandleAddComment()" [formGroup]="commentForm" id="form-vote">
+                        <div>
+                            <div class="rating">
+                                <input type="radio" formControlName="rating" value={{5}} id="inp5"><label
+                                    for="inp5">☆</label>
+                                <input type="radio" formControlName="rating" value={{4}} id="inp4"><label
+                                    for="inp4">☆</label>
+                                <input type="radio" formControlName="rating" value={{3}} id="inp3"><label
+                                    for="inp3">☆</label>
+                                <input type="radio" formControlName="rating" value={{2}} id="inp2"><label
+                                    for="inp2">☆</label>
+                                <input type="radio" formControlName="rating" value={{1}} id="inp1"><label
+                                    for="inp1">☆</label>
+                            </div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label">Nội dung:</label>
+                            <textarea class="form-control" rows="4" formControlName="description"></textarea>
+                        </div>
+                        <input type="hidden" formControlName="userId">
+                        <input type="hidden" formControlName="productId">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit">Đánh
+                                giá</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

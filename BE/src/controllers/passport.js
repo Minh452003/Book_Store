@@ -8,10 +8,11 @@ import jwt from 'jsonwebtoken';
 passport.use(new GoogleStrategy({
     clientID: "563215821470-u1ptu5gn9ndnpbcqgauvk3h860pensfa.apps.googleusercontent.com",
     clientSecret: "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",
-    callbackURL: "http://localhost:8088/api/auth/google/callback",
+    callbackURL: "http://localhost:8080/api/auth/google/callback",
     passReqToCallback: true
 },
     async (request, accessToken, refreshToken, profile, done) => {
+        console.log(profile);
         const isExitUser = await Auth.findOne({
             googleId: profile.id,
             authType: "google"
@@ -19,26 +20,32 @@ passport.use(new GoogleStrategy({
         if (isExitUser) {
             const token = jwt.sign({ id: isExitUser._id }, "DATN", { expiresIn: "2h" });
             return done(null, { user: isExitUser, accessToken: token });
-
+        } else {
+            try {
+                const newUser = new Auth({
+                    authType: 'google',
+                    googleId: profile.id,
+                    full_name: profile.name.familyName,
+                    email: profile.emails[0].value,
+                    avatar: {
+                        url: profile.picture,
+                        publicId: null
+                    },
+                    password: "Không có mật khẩu",
+                });
+                await newUser.save();
+                const token = jwt.sign({ id: newUser._id }, "DATN", { expiresIn: "2h" });
+                done(null, { user: newUser, accessToken: token });
+            } catch (error) {
+                // Xử lý lỗi chèn (trường hợp trùng lặp)
+                if (error.code === 11000) {
+                    return done(null, false, { message: "Tài khoản đã tồn tại" });
+                } else {
+                    // Xử lý các lỗi khác
+                    return done(error);
+                }
+            }
         }
-
-        const newUser = new Auth({
-            authType: 'google',
-            googleId: profile.id,
-            first_name: profile.name.familyName,
-            last_name: profile.name.givenName,
-            email: profile.emails[0].value,
-            avatar: {
-                url: profile.picture,
-                publicId: null
-            },
-            password: "Không có mật khẩu",
-            phone: "Chưa có số điện thoại",
-            address: "Chưa có địa chỉ"
-        })
-        await newUser.save();
-        const token = jwt.sign({ id: newUser._id }, "DATN", { expiresIn: "2h" });
-        done(null, { user: newUser, accessToken: token });
     }
 ));
 
@@ -51,7 +58,7 @@ passport.deserializeUser(({ user, accessToken }, done) => {
 
 export const LoginWithGoogle = (req, res) => {
     const { accessToken } = req.user;
-    res.redirect(`http://localhost:5173/success/?token=${accessToken}`);
+    res.redirect(`http://localhost:4200/?token=${accessToken}`);
 }
 
 export const LogoutGoogle = (req, res) => {

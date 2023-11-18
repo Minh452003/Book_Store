@@ -23,13 +23,7 @@ export class OrderPageComponent {
   filteredOrders: any[] = []; // Danh sách đơn hàng đã lọc
   comment !: IComment[];
   commentData: any = null;
-  commentForm = this.formBuilder.group({
-    userId: [''], // Truyền giá trị của userId từ instance của IProduct
-    productId: [''], // Truyền giá trị của productId từ instance của IProduct
-    description: [''],
-    rating: [null],
-    image: ['']
-  })
+
   constructor(
     private orderService: OrderService,
     private AuthService: AuthService,
@@ -37,12 +31,7 @@ export class OrderPageComponent {
     private StatusService: StatusService,
     private formBuilder: FormBuilder,
     private CommentService: CommentService,
-  ) {
-    this.commentForm.patchValue({
-      userId: this.commentData?.userId,
-      productId: this.commentData?.products
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getAllStatus();
@@ -97,30 +86,7 @@ export class OrderPageComponent {
       this.filteredOrders = this.detailOrder.filter(order => order.status._id == id);
     }
   }
-  //--------------------------------
-  onHandleComment(value: any) {
-    this.commentData = value
-  }
   // -------------------------------
 
-  onHandleAddComment({ order }: any) {
-    if (this.commentForm.valid) {
-      const { id }: any = getDecodedAccessToken();
-      const formValue = this.commentForm.value;
-      console.log(formValue);
 
-      this.commentData.products.map((cm: any) => {
-        this.CommentService.addComment({ ...formValue, userId: id, productId: cm._id }).subscribe((data: IComment) => {
-          // Swal.fire({
-          //   position: 'center',
-          //   icon: 'success',
-          //   title: 'Đánh giá thành công!',
-          //   showConfirmButton: false,
-          //   timer: 1500
-          // });
-        })
-      })
-    }
-
-  }
 }
