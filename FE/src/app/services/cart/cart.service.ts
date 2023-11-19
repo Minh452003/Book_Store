@@ -26,4 +26,11 @@ export class CartService {
   removeAllCart(userId: string): Observable<any> {
     return this.http.delete(`http://localhost:8080/api/carts/${userId}/clears`)
   }
+  applyCoupon({ couponId, userId }: any): Observable<any> {
+    return this.http.patch(`http://localhost:8080/api/carts/${userId}/apply`, couponId)
+  }
+  removeCoupon({ couponId, userId }: any): Observable<any> {
+    couponId = {}
+    return this.http.patch(`http://localhost:8080/api/carts/${userId}/remove-coupon`, couponId)
+  }
 }

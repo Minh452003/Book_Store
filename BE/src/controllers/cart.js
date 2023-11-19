@@ -282,7 +282,6 @@ export const applyCoupon = async (req, res) => {
     try {
         const userId = req.params.id;
         const couponId = req.body.couponId;
-
         const cart = await Cart.findOne({ userId });
         if (!cart) {
             return res.status(404).json({ message: 'Không tìm thấy giỏ hàng cho người dùng này' });
@@ -290,7 +289,6 @@ export const applyCoupon = async (req, res) => {
         if (cart.couponId != null) {
             return res.status(404).json({ message: 'Chỉ được sử dụng 1 phiếu giảm giá' });
         }
-
         const coupon = await Coupon.findById(couponId);
         if (cart.total < coupon.min_purchase_amount) {
             return res.status(404).json({ message: 'Không đủ điều kiện để sử dụng phiếu giảm giá' })

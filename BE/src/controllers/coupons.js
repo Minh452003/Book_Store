@@ -1,5 +1,7 @@
 import Coupon from "../models/coupons.js"
 import { CouponSchema } from "../schemas/coupons.js"
+import Order from "../models/orders.js"
+import Cart from '../models/cart.js'
 
 
 export const createCoupons = async (req, res) => {
@@ -117,3 +119,44 @@ export const updateCoupons = async (req, res) => {
         })
     }
 }
+export const getCouponByUser = async (req, res) => {
+    try {
+        const userId = req.params.userId
+        const coupons = await Coupon.find();
+        if (!coupons) {
+            return res.status(404).json({
+                message: "Lấy tất cả phiếu giảm giá thất bại"
+            });
+        }
+
+        const userOrders = await Order.find({ userId: userId });
+        const userCarts = await Cart.find({ userId: userId });
+        const validCoupons = coupons.filter(coupon => {
+            const notExpired = coupon.expiration_date > new Date(); // Kiểm tra hạn sử dụng
+            const notUsedUp = coupon.coupon_quantity > 0; // Kiểm tra số lượng tồn
+            const totalMin = coupon.min_purchase_amount < userCarts[0].total
+            return notExpired && notUsedUp && totalMin;
+        });
+
+        userOrders.forEach(order => {
+            if (order.couponId) {
+                const usedCoupon = validCoupons.find(c => c._id.toString() === order.couponId.toString());
+                if (usedCoupon) {
+                    const index = validCoupons.indexOf(usedCoupon);
+                    if (index !== -1) {
+                        validCoupons.splice(index, 1);
+                    }
+                }
+            }
+        });
+
+        return res.status(200).json({
+            message: "Lấy phiếu giảm giá thành công",
+            validCoupons
+        });
+    } catch (error) {
+        return res.status(400).json({
+            message: error.message
+        });
+    }
+};

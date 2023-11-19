@@ -63,12 +63,25 @@
                         <div class="p-4">
                             <p class="font-italic mb-4">Nếu bạn có mã giảm giá vui lòng chọn ở bên dưới
                             </p>
-                            <div class="input-group mb-4 border rounded-pill p-2">
-                                <input type="text" placeholder="Apply coupon" aria-describedby="button-addon3"
+                            <form *ngIf="cart&&!cart.data.couponId" [formGroup]="couponForm"
+                                class="input-group mb-4 border rounded-pill p-2">
+                                <select class="form-control border-0" formControlName="couponId">
+                                    <option selected disabled>Chọn phiếu giảm giá</option>
+                                    <option *ngFor="let coupon of coupons" [value]="coupon._id">{{coupon.coupon_name}}
+                                    </option>
+                                </select>
+                                <div class="input-group-append border-0">
+                                    <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"
+                                        (click)="onHandleApplyCoupon()">Áp
+                                        dụng</button>
+                                </div>
+                            </form>
+                            <div *ngIf="cart&&cart.data.couponId" class="input-group mb-4 border rounded-pill p-2">
+                                <input type="text" placeholder={{couponName}} aria-describedby="button-addon3"
                                     class="form-control border-0" />
                                 <div class="input-group-append border-0">
-                                    <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill">Áp
-                                        dụng</button>
+                                    <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"
+                                        (click)="onHandleRemoveCoupon()">Huỷ</button>
                                 </div>
                             </div>
                         </div>
