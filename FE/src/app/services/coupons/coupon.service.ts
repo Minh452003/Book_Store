@@ -25,4 +25,7 @@ export class CouponService {
   removeCoupon(id: number): Observable<ICoupon> {
     return this.http.delete<ICoupon>(`http://localhost:8080/api/coupons/${id}`)
   }
+  getCouponByUser(userId: string | number): Observable<ICoupon> {
+    return this.http.get<ICoupon>(`http://localhost:8080/api/coupon/${userId}`);
+  }
 }
